@@ -33,6 +33,7 @@ public class StudentDAO {
 		return sessionFactory.getCurrentSession();   //ten podzial na dao i daoimpl to zrob bo z nauczycielem bedzie to samo i innymi modelami
 	}
 
+	@Transactional
 	public List<String> studentList() {
 		Criteria criteria = getSession().createCriteria(Student.class);
 		ProjectionList projList = Projections.projectionList();

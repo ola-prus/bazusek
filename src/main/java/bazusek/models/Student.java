@@ -109,4 +109,8 @@ public class Student {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String toString() {
+        return "id: "+getId_student();
+    }
 }

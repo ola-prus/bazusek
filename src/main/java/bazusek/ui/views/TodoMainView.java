@@ -3,7 +3,10 @@ package bazusek.ui.views;
 /**
  * Created by Ola on 2018-05-19.
  */
-import bazusek.ui.controllers.SwingController;
+import bazusek.controllers.SwingController;
+import bazusek.dao.StudentDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

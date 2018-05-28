@@ -1,10 +1,12 @@
 package bazusek.config;
 
+import bazusek.models.Marks;
 import bazusek.models.Student;
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import bazusek.models.Subjects;
 import bazusek.repository.StudentRepository;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
@@ -27,6 +29,7 @@ import org.apache.commons.pool.impl.GenericObjectPool;
 
 @Configuration
 @ComponentScan("bazusek.models.*")
+@ComponentScan("bazusek.ui.views")
 @EnableTransactionManagement
 @EnableJpaRepositories("bazusek.repository")
 public class DbConfig {
@@ -62,7 +65,7 @@ public class DbConfig {
    @Bean(name = "sessionFactory")
    public SessionFactory getSessionFactory(DataSource dataSource) {
       LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-      sessionBuilder.addAnnotatedClasses(Student.class); //jak bedzie wiecej modeli to tu dodaj
+      sessionBuilder.addAnnotatedClasses(Student.class, Subjects.class, Marks.class); //jak bedzie wiecej modeli to tu dodaj
       sessionBuilder.addProperties(getHibernateProperties());
       return sessionBuilder.buildSessionFactory();
    }
@@ -71,6 +74,7 @@ public class DbConfig {
       Properties properties = new Properties();
       properties.put("hibernate.show_sql", "true");
       properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+      //properties.put("hibernate.hbm2ddl.auto", "update");
       return properties;
    }
 
