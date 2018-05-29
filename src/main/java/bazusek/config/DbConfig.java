@@ -29,7 +29,6 @@ import org.apache.commons.pool.impl.GenericObjectPool;
 
 @Configuration
 @ComponentScan("bazusek.models.*")
-@ComponentScan("bazusek.ui.views")
 @EnableTransactionManagement
 @EnableJpaRepositories("bazusek.repository")
 public class DbConfig {

@@ -39,7 +39,7 @@ public class SwingController implements ActionListener {
         switch(name) {
             case "newMi":
                 System.out.println("dziala lista studentow");
-                ListStudentView listStudentView=new ListStudentView();
+                //ListStudentView listStudentView=new ListStudentView();
                 break;
             case "newMi1":
                 System.out.println("dziala edycja studentow");
