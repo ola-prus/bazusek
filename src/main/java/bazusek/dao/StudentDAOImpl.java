@@ -9,21 +9,17 @@ import org.hibernate.*;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 
 public class StudentDAOImpl implements StudentDAO {
 
-	List<String> list;
+	List<Student> list;
 
-	public void setList(List<String> list) {
+	public void setList(List<Student> list) {
 		this.list = list;
 	}
 
-	public List<String> getList() {
+	public List<Student> getList() {
 		return list;
 	}
 
@@ -35,7 +31,7 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Transactional
-	public List<String> studentList() {
+	public List<Student> studentList() {
 		Criteria criteria = getSession().createCriteria(Student.class);
 		ProjectionList projList = Projections.projectionList();
 		projList.add(Projections.property("id_student"));
@@ -48,6 +44,7 @@ public class StudentDAOImpl implements StudentDAO {
 		projList.add(Projections.property("phone"));
 		criteria.setProjection(projList);
 		list=criteria.list();
+
 		System.out.println("student w criteria dodany");
 
 		return list;

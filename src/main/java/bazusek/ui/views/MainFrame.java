@@ -13,9 +13,10 @@ import org.springframework.context.ApplicationContext;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
+import javax.transaction.Transactional;
 
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements Frame { //mainframe musi byc interfejsem?
 
     @Autowired
     StudentDAO studentDAO;
@@ -23,26 +24,26 @@ public class MainFrame extends JFrame {
     @Autowired
     MarksDAO marksDAO;
 
+    @Transactional
     public void init() {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Student Management Application");
         setSize(500, 500);
         setResizable(true);
         setLocationRelativeTo(null);
-        setVisible(true);
-        setState(Frame.NORMAL);
-
-        JPanel pane = new JPanel(new FlowLayout());
 
         JMenuBar menubar = createMenu();
         add(menubar);
 
+        FlowLayout flowLayout=new FlowLayout();
+        setLayout(flowLayout);
         show();
-        System.out.println(marksDAO);
+        setVisible(true);
     }
 
     private JMenuBar createMenu() {
         JMenuBar menubar = new JMenuBar(); //lista menu
+
 
         JMenu fileMenu = new JMenu("Student"); //jeden skladnik z menu
         fileMenu.setMnemonic(KeyEvent.VK_F); //mnemonic=skladajacy sie slowo klucz z kilku liter
@@ -90,5 +91,8 @@ public class MainFrame extends JFrame {
         fileMenu3.add(newMi7);
 
         return menubar;
+    }
+    public void add(JPanel panel){
+        add(panel);
     }
 }

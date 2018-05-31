@@ -1,5 +1,6 @@
 package bazusek.ui.views;
 
+import bazusek.dao.StudentDAO;
 import bazusek.dao.StudentDAOImpl;
 import bazusek.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,14 @@ import java.awt.*;
 public class ListStudentView extends JFrame{
 
     @Autowired
-    StudentDAOImpl studentDAOImpl;
+    StudentDAO studentDAO; //widzi beana
 
     @Autowired
     private ApplicationContext appContext;
 
     public ListStudentView(MainFrame frame){
         System.out.println("ramka główna dodana");
+
 
         JPanel panel=new JPanel();
         JLabel label = new JLabel("Lista studentów");
@@ -42,8 +44,8 @@ public class ListStudentView extends JFrame{
 
         System.out.println(appContext);
 
-        Student studenci = studentDAOImpl.getById(2);
-        System.out.println(studenci);
+
+
 
     }
 }
