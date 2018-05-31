@@ -22,7 +22,7 @@ public class Launcher {
         //Student student = new Student("dds", "dg", "sagv", "afeeeee", "ukv", "nv", "bj");
         List<Student> list = context.getBean(StudentDAO.class).studentList();
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + " " + list.getClass());
+            System.out.println(i + " " + list.get(i));
 
 
         }

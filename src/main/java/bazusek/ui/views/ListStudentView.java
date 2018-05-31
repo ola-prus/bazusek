@@ -21,10 +21,13 @@ public class ListStudentView extends JFrame{
     @Autowired
     private ApplicationContext appContext;
 
-    public ListStudentView(MainFrame frame){
-        System.out.println("ramka główna dodana");
+//    @Autowired
+//    MainFrame frame; //nie widzi beana
 
+    public ListStudentView(){
+       // System.out.println(frame);
 
+//z kontrolera otwiera sie w nowej ramce jesli tu stworze ramke od podstaw
         JPanel panel=new JPanel();
         JLabel label = new JLabel("Lista studentów");
         String listSt[]={"nmim", "gcgfc", "fyvh", "jgv", "vgh", "vfc", "v", "rtrhg", "iugyh", "bgvfgfdhjnbkknjvgcdxcbnkkjknbb", "nnbvh bbkjk"};
@@ -38,9 +41,9 @@ public class ListStudentView extends JFrame{
 
 
 
-        frame.getContentPane().add(BorderLayout.NORTH, label);
-        frame.getContentPane().add(BorderLayout.CENTER, scrollPane);
-        frame.getContentPane().add(BorderLayout.AFTER_LINE_ENDS, button);
+        getContentPane().add(BorderLayout.NORTH, label);
+        getContentPane().add(BorderLayout.CENTER, scrollPane);
+        getContentPane().add(BorderLayout.AFTER_LINE_ENDS, button);
 
         System.out.println(appContext);
 

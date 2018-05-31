@@ -17,16 +17,9 @@ import javax.swing.*;
  */
 public class SwingController implements ActionListener {
 
-    //private JTextField searchTermTextField = new JTextField(26);
-   // JButton button;
     JMenuItem mI;
     String name;
-   // private DefaultTableModel model; //do constantow
 
-   /* public SwingController(JButton button) {
-        super();
-        this.button = button;  //pozniej if button name to cos tam
-    }*/
     public SwingController(JMenuItem mI){
         super();
         this.mI=mI;
@@ -39,7 +32,7 @@ public class SwingController implements ActionListener {
         switch(name) {
             case "newMi":
                 System.out.println("dziala lista studentow");
-                //ListStudentView listStudentView=new ListStudentView();
+               // ListStudentView listStudentView=new ListStudentView();
                 break;
             case "newMi1":
                 System.out.println("dziala edycja studentow");

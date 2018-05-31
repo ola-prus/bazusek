@@ -16,7 +16,7 @@ import javax.swing.*;
 import javax.transaction.Transactional;
 
 
-public class MainFrame extends JFrame implements Frame { //mainframe musi byc interfejsem?
+public class MainFrame extends JFrame {
 
     @Autowired
     StudentDAO studentDAO;
@@ -24,7 +24,7 @@ public class MainFrame extends JFrame implements Frame { //mainframe musi byc in
     @Autowired
     MarksDAO marksDAO;
 
-    @Transactional
+
     public void init() {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Student Management Application");
@@ -92,7 +92,5 @@ public class MainFrame extends JFrame implements Frame { //mainframe musi byc in
 
         return menubar;
     }
-    public void add(JPanel panel){
-        add(panel);
-    }
+
 }
