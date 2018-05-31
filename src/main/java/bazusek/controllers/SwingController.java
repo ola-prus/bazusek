@@ -1,6 +1,6 @@
 package bazusek.controllers;
 
-import bazusek.ui.views.ListStudentView;
+import bazusek.ui.views.StudentListPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +32,7 @@ public class SwingController implements ActionListener {
         switch(name) {
             case "newMi":
                 System.out.println("dziala lista studentow");
-               // ListStudentView listStudentView=new ListStudentView();
+                StudentListPanel studentListPanel =new StudentListPanel();
                 break;
             case "newMi1":
                 System.out.println("dziala edycja studentow");

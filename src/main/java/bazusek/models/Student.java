@@ -32,7 +32,8 @@ public class Student {
     @Column
     private String phone;
 
-    public Student(){}
+    public Student() {
+    }
 
 
     public Student(String first_name, String second_name, String last_name, String pesel, String mother_name, String father_name, String phone) {
@@ -110,7 +111,8 @@ public class Student {
         this.phone = phone;
     }
 
+    @Override
     public String toString() {
-        return "id: "+getId_student();
+        return " id_student: " + id_student + " imie: " + first_name + " drugie imie:" + second_name + " nazwisko: " + last_name + " pesel: " + pesel + " imie matki: " + mother_name + " imie ojca: " + father_name + " telefon: " + phone;
     }
 }

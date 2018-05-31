@@ -1,11 +1,6 @@
 package bazusek.config;
 
-import bazusek.dao.MarksDAO;
-import bazusek.dao.MarksDAOImpl;
-import bazusek.dao.StudentDAO;
-import bazusek.dao.StudentDAOImpl;
-import bazusek.ui.views.ListStudentView;
-import bazusek.ui.views.MainFrame;
+import bazusek.ui.views.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,23 +11,32 @@ import javax.annotation.PostConstruct;
  * Created by Ola on 2018-05-28.
  */
 @Configuration
-@ComponentScan("bazusek.dao.*")
+@ComponentScan("bazusek.todo.ui.*")
 public class AppConfig {
 
     @Bean
     MainFrame mainFrame(){return new MainFrame();}
 
     @Bean
-    public StudentDAO studentDAO() {
-        return new StudentDAOImpl();
+    public StudentListPanel studentSpherePanel() {
+        return new StudentListPanel();
     }
 
     @Bean
-    public MarksDAO marksDAO(){return new MarksDAOImpl(); }
+    public StudentMarksPanel studentMarksPanel() {return new StudentMarksPanel();}
+
+    @Bean
+    StudentDataEditPanel studentDataEditPanel(){return new StudentDataEditPanel();}
+
+    @Bean
+    TeacherListPanel teacherListPanel(){return new TeacherListPanel();}
+
+    @Bean
+    TeacherDataEditPanel teacherDataEditPanel(){return new TeacherDataEditPanel();}
+
+    @Bean
+    SubjectsPanel subjectsPanel(){return new SubjectsPanel();}
 
     @PostConstruct
-    public void initialize() {
-        mainFrame().init();
-
-    }
+    public void initialize() {mainFrame().init();}
 }

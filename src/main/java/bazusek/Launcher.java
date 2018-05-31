@@ -19,12 +19,9 @@ public class Launcher {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(DbConfig.class, AppConfig.class);
         System.out.println("annotation start dla db");
-        //Student student = new Student("dds", "dg", "sagv", "afeeeee", "ukv", "nv", "bj");
-        List<Student> list = context.getBean(StudentDAO.class).studentList();
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + " " + list.get(i));
 
 
-        }
+
+
     }
 }

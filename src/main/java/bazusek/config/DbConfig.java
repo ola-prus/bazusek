@@ -1,5 +1,9 @@
 package bazusek.config;
 
+import bazusek.dao.MarksDAO;
+import bazusek.dao.MarksDAOImpl;
+import bazusek.dao.StudentDAO;
+import bazusek.dao.StudentDAOImpl;
 import bazusek.models.Marks;
 import bazusek.models.Student;
 import java.util.Properties;
@@ -18,6 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
@@ -30,28 +35,28 @@ import org.apache.commons.pool.impl.GenericObjectPool;
 @Configuration
 @ComponentScan("bazusek.models.*")
 @EnableTransactionManagement
-@EnableJpaRepositories("bazusek.repository")
 public class DbConfig {
 
-   private Environment env;
+
 
    @Bean
    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-      LocalContainerEntityManagerFactoryBean em
+      LocalContainerEntityManagerFactoryBean entityManagerFactory
               = new LocalContainerEntityManagerFactoryBean();
-      em.setDataSource(getDataSource());
-      em.setPackagesToScan(new String[] { "bazusek" });
+      entityManagerFactory.setDataSource(dataSource());
+      entityManagerFactory.setPackagesToScan("bazusek.todo.models");
 
-      JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-      em.setJpaVendorAdapter(vendorAdapter);
-      em.setJpaProperties(getHibernateProperties());
+      JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter(); //nie ma u pitera
+      entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
 
-      return em;
+      entityManagerFactory.setJpaProperties(getHibernateProperties());
+
+      return entityManagerFactory;
    }
 
    @Bean(name = "dataSource")
-   public DataSource getDataSource() {
-      BasicDataSource dataSource = new BasicDataSource();
+   public DataSource dataSource() {
+      DriverManagerDataSource dataSource = new DriverManagerDataSource();
       dataSource.setDriverClassName("com.mysql.jdbc.Driver");
       dataSource.setUrl("jdbc:mysql://212.182.6.126:3306/ola");
       dataSource.setUsername("ola");
@@ -60,9 +65,9 @@ public class DbConfig {
       return dataSource;
    }
 
-   @Autowired
+
    @Bean(name = "sessionFactory")
-   public SessionFactory getSessionFactory(DataSource dataSource) {
+   public SessionFactory getSessionFactory(DataSource dataSource) { //u pitera entity transaction manager
       LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
       sessionBuilder.addAnnotatedClasses(Student.class, Subjects.class, Marks.class); //jak bedzie wiecej modeli to tu dodaj
       sessionBuilder.addProperties(getHibernateProperties());
@@ -73,16 +78,23 @@ public class DbConfig {
       Properties properties = new Properties();
       properties.put("hibernate.show_sql", "true");
       properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-      //properties.put("hibernate.hbm2ddl.auto", "update");
+      properties.put("hibernate.hbm2ddl.auto", "update");
       return properties;
    }
 
-   @Autowired
-   @Bean(name = "transactionManager")
+
+   @Bean(name = "transactionManager") //u pitera trans manager entity manager
    public HibernateTransactionManager getTransactionManager(
            SessionFactory sessionFactory) {
       HibernateTransactionManager transactionManager = new HibernateTransactionManager(
               sessionFactory);
       return transactionManager;
    }
+   @Bean
+   public StudentDAO studentDAO() {
+      return new StudentDAOImpl();
+   } //moze w dbconfig?
+
+   @Bean
+   public MarksDAO marksDAO(){return new MarksDAOImpl(); }
 }

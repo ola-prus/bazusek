@@ -6,14 +6,11 @@ package bazusek.ui.views;
 import bazusek.controllers.SwingController;
 import bazusek.dao.MarksDAO;
 import bazusek.dao.StudentDAO;
-import bazusek.models.Marks;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
-import javax.transaction.Transactional;
 
 
 public class MainFrame extends JFrame {
@@ -24,26 +21,57 @@ public class MainFrame extends JFrame {
     @Autowired
     MarksDAO marksDAO;
 
+    @Autowired
+    StudentListPanel studentListPanel;
+
+    @Autowired
+    StudentMarksPanel studentMarksPanel;
+
+    @Autowired
+    StudentDataEditPanel studentDataEditPanel;
+
+    @Autowired
+    TeacherListPanel teacherListPanel;
+
+    @Autowired
+    TeacherDataEditPanel teacherDataEditPanel;
+
+    @Autowired
+    SubjectsPanel subjectsPanel;
 
     public void init() {
+
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Student Management Application");
         setSize(500, 500);
         setResizable(true);
         setLocationRelativeTo(null);
 
-        JMenuBar menubar = createMenu();
-        add(menubar);
+        setJMenuBar(new AppMenu(this, studentListPanel, studentMarksPanel,studentDataEditPanel, teacherListPanel, teacherDataEditPanel, subjectsPanel));
+        setContentPane(studentListPanel);
+        studentListPanel.setVisible(false);
+        setContentPane(studentMarksPanel);
+        studentMarksPanel.setVisible(false);
+        setContentPane(studentDataEditPanel);
+        studentDataEditPanel.setVisible(false);
+        setContentPane(teacherListPanel);
+        teacherListPanel.setVisible(false);
+        setContentPane(teacherDataEditPanel);
+        teacherDataEditPanel.setVisible(false);
+        setContentPane(subjectsPanel);
+        subjectsPanel.setVisible(false);
 
-        FlowLayout flowLayout=new FlowLayout();
-        setLayout(flowLayout);
-        show();
+
+        setState(Frame.NORMAL);
         setVisible(true);
+        show();
     }
 
     private JMenuBar createMenu() {
         JMenuBar menubar = new JMenuBar(); //lista menu
 
+        FlowLayout flowLayout=new FlowLayout();
+        menubar.setLayout(flowLayout);
 
         JMenu fileMenu = new JMenu("Student"); //jeden skladnik z menu
         fileMenu.setMnemonic(KeyEvent.VK_F); //mnemonic=skladajacy sie slowo klucz z kilku liter

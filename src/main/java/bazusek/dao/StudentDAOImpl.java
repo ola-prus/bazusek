@@ -1,5 +1,6 @@
 package bazusek.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -13,13 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class StudentDAOImpl implements StudentDAO {
 
-	List<Student> list;
+	List list;
 
-	public void setList(List<Student> list) {
+	public void setList(List list) {
 		this.list = list;
 	}
 
-	public List<Student> getList() {
+	public List getList() {
 		return list;
 	}
 
@@ -31,31 +32,17 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Transactional
-	public List<Student> studentList() {
-		Criteria criteria = getSession().createCriteria(Student.class);
-		ProjectionList projList = Projections.projectionList();
-		projList.add(Projections.property("id_student"));
-		projList.add(Projections.property("first_name"));
-		projList.add(Projections.property("second_name"));
-		projList.add(Projections.property("last_name"));
-		projList.add(Projections.property("pesel"));
-		projList.add(Projections.property("mother_name"));
-		projList.add(Projections.property("father_name"));
-		projList.add(Projections.property("phone"));
-		criteria.setProjection(projList);
-		list=criteria.list();
-
-		System.out.println("student w criteria dodany");
-
-		return list;
+	public List<Student> studentList(){
+		return getSession().createCriteria(Student.class).list();
 	}
 
 	@Transactional
-	public void save(Student student) {
+	public Student save(Student student) {
 		System.out.println("jest sesja");
 		System.out.println("student wybrany w sesji");
 		getSession().save(student);
 		System.out.println("student zapisany");
+		return student;
 	}
 
 	public Student getById(int id) {
