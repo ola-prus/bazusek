@@ -1,16 +1,18 @@
 package bazusek.models;
 
-
 import javax.persistence.*;
 
+/**
+ * Created by Ola on 2018-06-01.
+ */
 @Entity
-@Table(name="Student")
-public class Student {
+@Table(name="Teacher")
+public class Teacher {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_student;
+    private int id_teacher;
 
 
     @Column
@@ -27,16 +29,18 @@ public class Student {
 
     @Column
     private String mother_name;
+
     @Column
     private String father_name;
     @Column
+
     private String phone;
 
-    public Student() {
+    public Teacher() {
     }
 
 
-    public Student(String first_name, String second_name, String last_name, String pesel, String mother_name, String father_name, String phone) {
+    public Teacher(String first_name, String second_name, String last_name, String pesel, String mother_name, String father_name, String phone) {
         this.first_name = first_name;
         this.second_name = second_name;
         this.last_name = last_name;
@@ -47,12 +51,12 @@ public class Student {
     }
 
 
-    public int getId_student() {
-        return id_student;
+    public int getId_teacher() {
+        return id_teacher;
     }
 
-    public void setId_student(int id_student) {
-        this.id_student = id_student;
+    public void setId_teacher(int id_teacher) {
+        this.id_teacher = id_teacher;
     }
 
     public String getFirst_name() {
@@ -113,6 +117,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return " id_student: " + id_student + " imie: " + first_name + " drugie imie:" + second_name + " nazwisko: " + last_name + " pesel: " + pesel + " imie matki: " + mother_name + " imie ojca: " + father_name + " telefon: " + phone;
+        return " id_teacher: " + id_teacher + " imie: " + first_name + " drugie imie:" + second_name + " nazwisko: " + last_name + " pesel: " + pesel + " imie matki: " + mother_name + " imie ojca: " + father_name + " telefon: " + phone;
     }
 }

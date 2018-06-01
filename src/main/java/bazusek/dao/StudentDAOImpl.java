@@ -28,7 +28,7 @@ public class StudentDAOImpl implements StudentDAO {
 	private SessionFactory sessionFactory;
 
 	private Session getSession() {
-		return sessionFactory.getCurrentSession();   //ten podzial na dao i daoimpl to zrob bo z nauczycielem bedzie to samo i innymi modelami
+		return sessionFactory.getCurrentSession();
 	}
 
 	@Transactional
@@ -38,8 +38,6 @@ public class StudentDAOImpl implements StudentDAO {
 
 	@Transactional
 	public Student save(Student student) {
-		System.out.println("jest sesja");
-		System.out.println("student wybrany w sesji");
 		getSession().save(student);
 		System.out.println("student zapisany");
 		return student;

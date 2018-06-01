@@ -15,49 +15,38 @@ import java.util.List;
  * Created by Ola on 2018-05-22.
  */
 
-public class StudentListPanel extends JPanel{
+public class StudentListPanel extends JPanel {
 
     @Autowired
     StudentDAO studentDAO;
 
     private DefaultListModel listModel;
 
-    public StudentListPanel(){
-       // System.out.println(studentDAO);
+    public StudentListPanel() {
+        listModel = new DefaultListModel();
 
-//        JLabel label = new JLabel("Lista studentów");
-//
-//        listModel = new DefaultListModel();
-//
-//        JList list = new JList();
-//        list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-//        list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-//
-//        JScrollPane listScroller = new JScrollPane(list);
-//        listScroller.setPreferredSize(new Dimension(250, 80));
-//        add(listScroller);
-//
-//        List<Student> listStudents=studentDAO.studentList();
-//        for (int i = 0; i < listStudents.size(); i++) {
-//            System.out.println(studentDAO.studentList());
-//            listModel.addElement(i+". "+listStudents.get(i).getFirst_name()+" "+listStudents.get(i).getLast_name());
-//        }
-//        list.setModel(listModel);
-//        add(label);
-//        add(list);
+        JList list = new JList(listModel);
+        list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 
+        JScrollPane listScroller = new JScrollPane(list);
+        listScroller.setPreferredSize(new Dimension(400, 400));
 
+        JButton refreshButton = new JButton("Pokaż listę studentów");
+        refreshButton.addActionListener(event -> {
+            refreshStudentsList();
+        });
+        add(refreshButton);
 
+        add(listScroller);
+    }
 
-
-//               add(BorderLayout.NORTH, label);
-//        add(BorderLayout.CENTER, scrollPane);
-//        add(BorderLayout.AFTER_LINE_ENDS, button);  //nie dziala
-
-
-
-
-
-
+    public void refreshStudentsList() {
+        listModel.clear();
+        List<Student> studentList = studentDAO.studentList();
+        for (int i = 0; i < studentList.size(); i++) {
+            System.out.println(studentDAO.studentList());
+            listModel.addElement( studentList.get(i).getId_student()+". " + studentList.get(i).getFirst_name() + " " + studentList.get(i).getLast_name());
+        }
     }
 }

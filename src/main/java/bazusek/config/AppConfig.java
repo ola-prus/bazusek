@@ -23,7 +23,7 @@ public class AppConfig {
     }
 
     @Bean
-    public StudentMarksPanel studentMarksPanel() {return new StudentMarksPanel();}
+    public StudentMarkEditPanel studentMarksPanel() {return new StudentMarkEditPanel();}
 
     @Bean
     StudentDataEditPanel studentDataEditPanel(){return new StudentDataEditPanel();}
@@ -35,7 +35,13 @@ public class AppConfig {
     TeacherDataEditPanel teacherDataEditPanel(){return new TeacherDataEditPanel();}
 
     @Bean
-    SubjectsPanel subjectsPanel(){return new SubjectsPanel();}
+    SubjectTeacherEditPanel subjectsPanel(){return new SubjectTeacherEditPanel();}
+
+    @Bean
+    StudentHomeAddressEditPanel studentHomeAddressEditPanel(){return new StudentHomeAddressEditPanel();}
+
+    @Bean
+    StudentPostalAddressEditPanel studentPostalAddressEditPanel(){return new StudentPostalAddressEditPanel();}
 
     @PostConstruct
     public void initialize() {mainFrame().init();}

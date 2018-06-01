@@ -7,7 +7,10 @@ import javax.swing.*;
  */
 public class AppMenu extends JMenuBar {
 
-    public AppMenu(MainFrame mainFrame, StudentListPanel studentListPanel, StudentMarksPanel studentMarksPanel, StudentDataEditPanel studentDataEditPanel, TeacherListPanel teacherListPanel, TeacherDataEditPanel teacherDataEditPanel, SubjectsPanel subjectsPanel) {
+    public AppMenu(MainFrame mainFrame, StudentListPanel studentListPanel, StudentMarkEditPanel studentMarkEditPanel,
+                   StudentDataEditPanel studentDataEditPanel, TeacherListPanel teacherListPanel, TeacherDataEditPanel teacherDataEditPanel,
+                   SubjectTeacherEditPanel subjectTeacherEditPanel, StudentHomeAddressEditPanel studentHomeAddressEditPanel,
+                   StudentPostalAddressEditPanel studentPostalAddressEditPanel) {
         JMenu menu = new JMenu("Student");
         JMenu menu2=new JMenu("Nauczyciel");
         add(menu);
@@ -17,11 +20,13 @@ public class AppMenu extends JMenuBar {
         studentListItem.addActionListener(event -> {
             System.out.println("Przejscie do listy studentów");
             mainFrame.setContentPane(studentListPanel);
-            studentMarksPanel.setVisible(false);
+            studentMarkEditPanel.setVisible(false);
             studentDataEditPanel.setVisible(false);
             teacherListPanel.setVisible(false);
             teacherDataEditPanel.setVisible(false);
-            subjectsPanel.setVisible(false);
+            subjectTeacherEditPanel.setVisible(false);
+            studentHomeAddressEditPanel.setVisible(false);
+            studentPostalAddressEditPanel.setVisible(false);
             studentListPanel.setVisible(true);
         });
         menu.add(studentListItem);
@@ -29,13 +34,16 @@ public class AppMenu extends JMenuBar {
         JMenuItem studentMarksItem = new JMenuItem("Oceny");
         studentMarksItem.addActionListener(event -> {
             System.out.println("Przejscie do listy ocen");
-            mainFrame.setContentPane(studentMarksPanel);
+            mainFrame.setContentPane(studentMarkEditPanel);
             studentListPanel.setVisible(false);
             studentDataEditPanel.setVisible(false);
             teacherListPanel.setVisible(false);
             teacherDataEditPanel.setVisible(false);
-            subjectsPanel.setVisible(false);
-            studentMarksPanel.setVisible(true);
+            subjectTeacherEditPanel.setVisible(false);
+            studentHomeAddressEditPanel.setVisible(false);
+            studentPostalAddressEditPanel.setVisible(false);
+            studentMarkEditPanel.setVisible(true);
+
         });
         menu.add(studentMarksItem);
 
@@ -44,23 +52,60 @@ public class AppMenu extends JMenuBar {
             System.out.println("Przejscie do edycji danych studenta");
             mainFrame.setContentPane(studentDataEditPanel);
             studentListPanel.setVisible(false);
-            studentMarksPanel.setVisible(false);
+            studentMarkEditPanel.setVisible(false);
             teacherListPanel.setVisible(false);
             teacherDataEditPanel.setVisible(false);
-            subjectsPanel.setVisible(false);
+            subjectTeacherEditPanel.setVisible(false);
+            studentHomeAddressEditPanel.setVisible(false);
+            studentPostalAddressEditPanel.setVisible(false);
             studentDataEditPanel.setVisible(true);
+
         });
         menu.add(studentDataEditItem);
+
+        JMenuItem studentHomeAddressItem = new JMenuItem("Adres zameldowania");
+        studentHomeAddressItem.addActionListener(event -> {
+            System.out.println("Przejscie do adresu zameldowania");
+            mainFrame.setContentPane(studentHomeAddressEditPanel);
+            studentMarkEditPanel.setVisible(false);
+            studentDataEditPanel.setVisible(false);
+            teacherListPanel.setVisible(false);
+            teacherDataEditPanel.setVisible(false);
+            subjectTeacherEditPanel.setVisible(false);
+            studentListPanel.setVisible(false);
+            studentPostalAddressEditPanel.setVisible(false);
+            studentHomeAddressEditPanel.setVisible(true);
+
+        });
+        menu.add(studentHomeAddressEditPanel);
+
+        JMenuItem studentPostalAddressItem = new JMenuItem("Adres do korespondencji");
+        studentHomeAddressItem.addActionListener(event -> {
+            System.out.println("Przejscie do adresu do korespondencji");
+            mainFrame.setContentPane(studentPostalAddressEditPanel);
+            studentMarkEditPanel.setVisible(false);
+            studentDataEditPanel.setVisible(false);
+            teacherListPanel.setVisible(false);
+            teacherDataEditPanel.setVisible(false);
+            subjectTeacherEditPanel.setVisible(false);
+            studentListPanel.setVisible(false);
+            studentHomeAddressEditPanel.setVisible(false);
+            studentPostalAddressEditPanel.setVisible(true);
+
+        });
+        menu.add(studentPostalAddressEditPanel);
 
         JMenuItem teacherListItem = new JMenuItem("Lista nauczycieli");
         teacherListItem.addActionListener(event -> {
             System.out.println("Przejscie do listy nauczycieli");
             mainFrame.setContentPane(teacherListPanel);
-            studentMarksPanel.setVisible(false);
+            studentMarkEditPanel.setVisible(false);
             studentDataEditPanel.setVisible(false);
             studentListPanel.setVisible(false);
             teacherDataEditPanel.setVisible(false);
-            subjectsPanel.setVisible(false);
+            subjectTeacherEditPanel.setVisible(false);
+            studentHomeAddressEditPanel.setVisible(false);
+            studentPostalAddressEditPanel.setVisible(false);
             teacherListPanel.setVisible(true);
         });
         menu2.add(teacherListItem);
@@ -69,11 +114,13 @@ public class AppMenu extends JMenuBar {
         teacherDataEditItem.addActionListener(event -> {
             System.out.println("Przejscie do edycji danych");
             mainFrame.setContentPane(teacherDataEditPanel);
-            studentMarksPanel.setVisible(false);
+            studentMarkEditPanel.setVisible(false);
             studentDataEditPanel.setVisible(false);
             studentListPanel.setVisible(false);
             teacherListPanel.setVisible(false);
-            subjectsPanel.setVisible(false);
+            subjectTeacherEditPanel.setVisible(false);
+            studentHomeAddressEditPanel.setVisible(false);
+            studentPostalAddressEditPanel.setVisible(false);
             teacherDataEditPanel.setVisible(true);
         });
         menu2.add(teacherDataEditItem);
@@ -81,13 +128,15 @@ public class AppMenu extends JMenuBar {
         JMenuItem subjectsItem = new JMenuItem("Przedmioty / Obsada");
         subjectsItem.addActionListener(event -> {
             System.out.println("Przejscie do listy przedmiotów i nauczycieli");
-            mainFrame.setContentPane(subjectsPanel);
-            studentMarksPanel.setVisible(false);
+            mainFrame.setContentPane(subjectTeacherEditPanel);
+            studentMarkEditPanel.setVisible(false);
             studentDataEditPanel.setVisible(false);
             studentListPanel.setVisible(false);
             teacherListPanel.setVisible(false);
             teacherDataEditPanel.setVisible(false);
-            subjectsPanel.setVisible(true);
+            studentHomeAddressEditPanel.setVisible(false);
+            studentPostalAddressEditPanel.setVisible(false);
+            subjectTeacherEditPanel.setVisible(true);
         });
         menu2.add(subjectsItem);
     }

@@ -3,7 +3,6 @@ package bazusek.ui.views;
 import bazusek.dao.StudentDAO;
 import bazusek.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,13 +17,11 @@ public class StudentDataEditPanel extends JPanel  {
 
     public StudentDataEditPanel() {
 
-
         GridLayout layout = new GridLayout(0, 2, 10, 10);
         setLayout(layout);
 
         JLabel label = new JLabel("Dane studenta");
-        String[] labels = {"imię:", "drugie imię:", "nazwisko:", "pesel:", "imię matki:", "imię ojca:", "telefon:"}; //, "adres zameldowania:", "adres do korespondencji:"};
-        int numPairs = labels.length;
+        String[] labels = {"imię:", "drugie imię:", "nazwisko:", "pesel:", "imię matki:", "imię ojca:", "telefon:"};
         add(label);
         updateUI();
 
@@ -72,38 +69,38 @@ public class StudentDataEditPanel extends JPanel  {
         pesel.setLabelFor(textPesel);
         add(textPesel, 3, 1);
 
-        JLabel imieMatki = new JLabel(labels[4], JLabel.TRAILING);
-        imieMatki.setLocation(4, 1);
-        imieMatki.setSize(1, 1);
-        add(imieMatki, 4, 0);
+        JLabel motherName = new JLabel(labels[4], JLabel.TRAILING);
+        motherName.setLocation(4, 1);
+        motherName.setSize(1, 1);
+        add(motherName, 4, 0);
 
-        JTextField textImieMatki = new JTextField();
-        textImieMatki.setEditable(true);
-        textImieMatki.setSize(25, 20);
-        imieMatki.setLabelFor(textImieMatki);
-        add(textImieMatki, 4, 1);
+        JTextField textMotherName = new JTextField();
+        textMotherName.setEditable(true);
+        textMotherName.setSize(25, 20);
+        motherName.setLabelFor(textMotherName);
+        add(textMotherName, 4, 1);
 
-        JLabel imieOjca = new JLabel(labels[5], JLabel.TRAILING);
-        imieOjca.setLocation(5, 1);
-        imieOjca.setSize(1, 1);
-        add(imieOjca, 5, 0);
+        JLabel fatherName = new JLabel(labels[5], JLabel.TRAILING);
+        fatherName.setLocation(5, 1);
+        fatherName.setSize(1, 1);
+        add(fatherName, 5, 0);
 
-        JTextField textImieOjca = new JTextField();
-        textImieOjca.setEditable(true);
-        textImieOjca.setSize(25, 20);
-        imieOjca.setLabelFor(textImieOjca);
-        add(textImieOjca, 5, 1);
+        JTextField textFatherName = new JTextField();
+        textFatherName.setEditable(true);
+        textFatherName.setSize(25, 20);
+        fatherName.setLabelFor(textFatherName);
+        add(textFatherName, 5, 1);
 
-        JLabel telefon = new JLabel(labels[6], JLabel.TRAILING);
-        telefon.setLocation(6, 1);
-        telefon.setSize(1, 1);
-        add(telefon, 6, 0);
+        JLabel phone = new JLabel(labels[6], JLabel.TRAILING);
+        phone.setLocation(6, 1);
+        phone.setSize(1, 1);
+        add(phone, 6, 0);
 
-        JTextField textTelefon = new JTextField();
-        textTelefon.setEditable(true);
-        textTelefon.setSize(25, 20);
-        telefon.setLabelFor(textTelefon);
-        add(textTelefon, 6, 1);
+        JTextField textPhone = new JTextField();
+        textPhone.setEditable(true);
+        textPhone.setSize(25, 20);
+        phone.setLabelFor(textPhone);
+        add(textPhone, 6, 1);
 
 //        JLabel adZam = new JLabel(labels[7], JLabel.TRAILING);
 //        adZam.setLocation(7, 1);
@@ -130,7 +127,7 @@ public class StudentDataEditPanel extends JPanel  {
         JButton button = new JButton("Zapisz zmiany");
         button.addActionListener(event -> {
             System.out.println("Dodawanie nowego studenta");
-            Student student = studentDAO.save(new Student(textName.getText(), textSecondName.getText(), textSurname.getText(), textPesel.getText(), textImieMatki.getText(), textImieOjca.getText(), textTelefon.getText()));   //, adZam.getText(), adKor.getText()));
+            Student student = studentDAO.save(new Student(textName.getText(), textSecondName.getText(), textSurname.getText(), textPesel.getText(), textMotherName.getText(), textFatherName.getText(), textPhone.getText()));   //, adZam.getText(), adKor.getText()));
             System.out.println("DOdany student: "+ student);
        });
         add(button);

@@ -2,13 +2,7 @@ package bazusek;
 
 import bazusek.config.AppConfig;
 import bazusek.config.DbConfig;
-import bazusek.dao.MarksDAO;
-import bazusek.dao.StudentDAO;
-import bazusek.models.Marks;
-import bazusek.models.Student;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.List;
 
 
 /**

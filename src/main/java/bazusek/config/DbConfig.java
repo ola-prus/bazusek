@@ -1,36 +1,23 @@
 package bazusek.config;
 
-import bazusek.dao.MarksDAO;
-import bazusek.dao.MarksDAOImpl;
-import bazusek.dao.StudentDAO;
-import bazusek.dao.StudentDAOImpl;
-import bazusek.models.Marks;
-import bazusek.models.Student;
+import bazusek.dao.*;
+import bazusek.models.*;
+
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import bazusek.models.Subjects;
-import bazusek.repository.StudentRepository;
-import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.apache.commons.pool.impl.GenericObjectPool;
 
 @Configuration
 @ComponentScan("bazusek.models.*")
@@ -69,7 +56,7 @@ public class DbConfig {
    @Bean(name = "sessionFactory")
    public SessionFactory getSessionFactory(DataSource dataSource) { //u pitera entity transaction manager
       LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-      sessionBuilder.addAnnotatedClasses(Student.class, Subjects.class, Marks.class); //jak bedzie wiecej modeli to tu dodaj
+      sessionBuilder.addAnnotatedClasses(Student.class, Subject.class, Mark.class, Teacher.class, StudentHomeAddress.class, StudentPostalAddress.class); //jak bedzie wiecej modeli to tu dodaj
       sessionBuilder.addProperties(getHibernateProperties());
       return sessionBuilder.buildSessionFactory();
    }
@@ -83,18 +70,28 @@ public class DbConfig {
    }
 
 
-   @Bean(name = "transactionManager") //u pitera trans manager entity manager
+   @Bean(name = "transactionManager")
    public HibernateTransactionManager getTransactionManager(
            SessionFactory sessionFactory) {
       HibernateTransactionManager transactionManager = new HibernateTransactionManager(
               sessionFactory);
-      return transactionManager;
+      return transactionManager;    //u pitera trans manager entity manager
    }
    @Bean
    public StudentDAO studentDAO() {
       return new StudentDAOImpl();
-   } //moze w dbconfig?
+   }
+   @Bean
+   public MarkDAO markDAO(){return new MarkDAOImpl(); }
 
    @Bean
-   public MarksDAO marksDAO(){return new MarksDAOImpl(); }
+   public StudentHomeAddressDAO studentHomeAddressDAO(){return new StudentHomeAddressDAOImpl();}
+
+   @Bean
+   public TeacherDAO teacherDAO(){return new TeacherDAOImpl();}
+
+   @Bean
+   public SubjectDAO subjectDAO(){return new SubjectDAOImpl();}
+
+
 }
