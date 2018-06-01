@@ -9,10 +9,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * Created by Ola on 2018-05-28.
  */
 public class Launcher {
-    public void launch() throws Exception {
+    public void launch() {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(DbConfig.class, AppConfig.class);
-        System.out.println("annotation start dla db");
+        System.out.println("start Application Context");
 
 
 

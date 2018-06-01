@@ -20,7 +20,7 @@ public class StudentDataEditPanel extends JPanel  {
         GridLayout layout = new GridLayout(0, 2, 10, 10);
         setLayout(layout);
 
-        JLabel label = new JLabel("Dane studenta");
+        JLabel label = new JLabel("Dane studenta");    //tutaj jakiś if client A to takie labels , if client B to inne
         String[] labels = {"imię:", "drugie imię:", "nazwisko:", "pesel:", "imię matki:", "imię ojca:", "telefon:"};
         add(label);
         updateUI();

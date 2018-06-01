@@ -8,7 +8,7 @@ import javax.persistence.*;
 
     @Entity
     @Table(name = "Student_postal_address")
-    public class StudentPostalAddress {                          //tylko model jest, join table klucz obcy?
+    public class StudentPostalAddress {                          // join table klucz obcy?
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

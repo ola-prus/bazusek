@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @Repository
-public interface StudentDAO { //component: repository, service na interface , wtedy bedzie dzialac autowired
+public interface StudentDAO {
     public Student save(Student student);
     public List<Student>studentList();
 

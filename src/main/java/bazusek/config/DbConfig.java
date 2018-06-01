@@ -85,9 +85,6 @@ public class DbConfig {
    public MarkDAO markDAO(){return new MarkDAOImpl(); }
 
    @Bean
-   public StudentHomeAddressDAO studentHomeAddressDAO(){return new StudentHomeAddressDAOImpl();}
-
-   @Bean
    public TeacherDAO teacherDAO(){return new TeacherDAOImpl();}
 
    @Bean

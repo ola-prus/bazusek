@@ -31,22 +31,6 @@ public class AppMenu extends JMenuBar {
         });
         menu.add(studentListItem);
 
-        JMenuItem studentMarksItem = new JMenuItem("Oceny");
-        studentMarksItem.addActionListener(event -> {
-            System.out.println("Przejscie do listy ocen");
-            mainFrame.setContentPane(studentMarkEditPanel);
-            studentListPanel.setVisible(false);
-            studentDataEditPanel.setVisible(false);
-            teacherListPanel.setVisible(false);
-            teacherDataEditPanel.setVisible(false);
-            subjectTeacherEditPanel.setVisible(false);
-            studentHomeAddressEditPanel.setVisible(false);
-            studentPostalAddressEditPanel.setVisible(false);
-            studentMarkEditPanel.setVisible(true);
-
-        });
-        menu.add(studentMarksItem);
-
         JMenuItem studentDataEditItem = new JMenuItem("Dane studenta / Edycja");
         studentDataEditItem.addActionListener(event -> {
             System.out.println("Przejscie do edycji danych studenta");
@@ -63,6 +47,22 @@ public class AppMenu extends JMenuBar {
         });
         menu.add(studentDataEditItem);
 
+        JMenuItem studentMarksItem = new JMenuItem("Oceny");
+        studentMarksItem.addActionListener(event -> {
+            System.out.println("Przejscie do listy ocen");
+            mainFrame.setContentPane(studentMarkEditPanel);
+            studentListPanel.setVisible(false);
+            studentDataEditPanel.setVisible(false);
+            teacherListPanel.setVisible(false);
+            teacherDataEditPanel.setVisible(false);
+            subjectTeacherEditPanel.setVisible(false);
+            studentHomeAddressEditPanel.setVisible(false);
+            studentPostalAddressEditPanel.setVisible(false);
+            studentMarkEditPanel.setVisible(true);
+
+        });
+        menu.add(studentMarksItem);
+
         JMenuItem studentHomeAddressItem = new JMenuItem("Adres zameldowania");
         studentHomeAddressItem.addActionListener(event -> {
             System.out.println("Przejscie do adresu zameldowania");
@@ -77,7 +77,7 @@ public class AppMenu extends JMenuBar {
             studentHomeAddressEditPanel.setVisible(true);
 
         });
-        menu.add(studentHomeAddressEditPanel);
+        menu.add(studentHomeAddressItem);
 
         JMenuItem studentPostalAddressItem = new JMenuItem("Adres do korespondencji");
         studentHomeAddressItem.addActionListener(event -> {
@@ -93,7 +93,7 @@ public class AppMenu extends JMenuBar {
             studentPostalAddressEditPanel.setVisible(true);
 
         });
-        menu.add(studentPostalAddressEditPanel);
+        menu.add(studentPostalAddressItem);
 
         JMenuItem teacherListItem = new JMenuItem("Lista nauczycieli");
         teacherListItem.addActionListener(event -> {
