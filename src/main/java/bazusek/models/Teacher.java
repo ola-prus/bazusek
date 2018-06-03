@@ -40,7 +40,8 @@ public class Teacher {
     }
 
 
-    public Teacher(String first_name, String second_name, String last_name, String pesel, String mother_name, String father_name, String phone) {
+    public Teacher(String first_name, String second_name, String last_name, String pesel, String mother_name,
+                   String father_name, String phone) {
         this.first_name = first_name;
         this.second_name = second_name;
         this.last_name = last_name;
@@ -117,6 +118,7 @@ public class Teacher {
 
     @Override
     public String toString() {
-        return " id_teacher: " + id_teacher + " imie: " + first_name + " drugie imie:" + second_name + " nazwisko: " + last_name + " pesel: " + pesel + " imie matki: " + mother_name + " imie ojca: " + father_name + " telefon: " + phone;
+        return " id_teacher: " + id_teacher + " imie: " + first_name + " drugie imie:" + second_name + " nazwisko: "
+                + last_name + " pesel: " + pesel + " imie matki: " + mother_name + " imie ojca: " + father_name + " telefon: " + phone;
     }
 }

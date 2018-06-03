@@ -44,7 +44,8 @@ public class TeacherListPanel extends JPanel {
         List<Teacher> teacherList = teacherDAO.teacherList();
         for (int i = 0; i < teacherList.size(); i++) {
             System.out.println(teacherDAO.teacherList());
-            listModel.addElement( teacherList.get(i).getId_teacher()+". " + teacherList.get(i).getFirst_name() + " " + teacherList.get(i).getLast_name());
+            listModel.addElement( teacherList.get(i).getId_teacher()+". " + teacherList.get(i).getFirst_name() +
+                    " " + teacherList.get(i).getLast_name());
         }
     }
 }

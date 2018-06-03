@@ -102,32 +102,11 @@ public class StudentDataEditPanel extends JPanel  {
         phone.setLabelFor(textPhone);
         add(textPhone, 6, 1);
 
-//        JLabel adZam = new JLabel(labels[7], JLabel.TRAILING);
-//        adZam.setLocation(7, 1);
-//        adZam.setSize(1, 1);
-//        add(adZam, 7, 0);
-//
-//        JTextField textAdZam = new JTextField();
-//        textAdZam.setEditable(true);
-//        textAdZam.setSize(25, 20);
-//        adZam.setLabelFor(textAdZam);
-//        add(textAdZam, 7, 1);
-//
-//        JLabel adKor = new JLabel(labels[8], JLabel.TRAILING);
-//        adKor.setLocation(8, 1);
-//        adKor.setSize(1, 1);
-//        add(adKor, 8, 0);
-//
-//        JTextField textAdKor = new JTextField();
-//        textAdKor.setEditable(true);
-//        textAdKor.setSize(25, 20);
-//        adKor.setLabelFor(textAdKor);
-//        add(textAdKor, 8, 1);
-
         JButton button = new JButton("Zapisz zmiany");
         button.addActionListener(event -> {
             System.out.println("Dodawanie nowego studenta");
-            Student student = studentDAO.save(new Student(textName.getText(), textSecondName.getText(), textSurname.getText(), textPesel.getText(), textMotherName.getText(), textFatherName.getText(), textPhone.getText()));   //, adZam.getText(), adKor.getText()));
+            Student student = studentDAO.save(new Student(textName.getText(), textSecondName.getText(), textSurname.getText(),
+                    textPesel.getText(), textMotherName.getText(), textFatherName.getText(), textPhone.getText()));
             System.out.println("DOdany student: "+ student);
        });
         add(button);

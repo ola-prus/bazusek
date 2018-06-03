@@ -46,7 +46,8 @@ public class StudentListPanel extends JPanel {
         List<Student> studentList = studentDAO.studentList();
         for (int i = 0; i < studentList.size(); i++) {
             System.out.println(studentDAO.studentList());
-            listModel.addElement( studentList.get(i).getId_student()+". " + studentList.get(i).getFirst_name() + " " + studentList.get(i).getLast_name());
+            listModel.addElement( studentList.get(i).getId_student()+". " + studentList.get(i).getFirst_name() + " "
+                    + studentList.get(i).getLast_name());
         }
     }
 }

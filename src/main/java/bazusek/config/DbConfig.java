@@ -33,7 +33,7 @@ public class DbConfig {
       entityManagerFactory.setDataSource(dataSource());
       entityManagerFactory.setPackagesToScan("bazusek.todo.models");
 
-      JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter(); //nie ma u pitera
+      JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
       entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
 
       entityManagerFactory.setJpaProperties(getHibernateProperties());
@@ -45,16 +45,16 @@ public class DbConfig {
    public DataSource dataSource() {
       DriverManagerDataSource dataSource = new DriverManagerDataSource();
       dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-      dataSource.setUrl("jdbc:mysql://212.182.6.126:3306/ola");
-      dataSource.setUsername("ola");
-      dataSource.setPassword("Ola!ola");
+      dataSource.setUrl("jdbc:mysql://xxxxxxxxxxxxxxx/x");
+      dataSource.setUsername("xxxxx");
+      dataSource.setPassword("xxxxxxxxxx");
 
       return dataSource;
    }
 
 
    @Bean(name = "sessionFactory")
-   public SessionFactory getSessionFactory(DataSource dataSource) { //u pitera entity transaction manager
+   public SessionFactory getSessionFactory(DataSource dataSource) {
       LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
       sessionBuilder.addAnnotatedClasses(Student.class, Subject.class, Mark.class, Teacher.class, StudentHomeAddress.class, StudentPostalAddress.class); //jak bedzie wiecej modeli to tu dodaj
       sessionBuilder.addProperties(getHibernateProperties());
@@ -75,7 +75,7 @@ public class DbConfig {
            SessionFactory sessionFactory) {
       HibernateTransactionManager transactionManager = new HibernateTransactionManager(
               sessionFactory);
-      return transactionManager;    //u pitera trans manager entity manager
+      return transactionManager;
    }
    @Bean
    public StudentDAO studentDAO() {

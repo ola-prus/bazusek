@@ -36,7 +36,8 @@ import javax.persistence.*;
     public StudentPostalAddress() {
     }
 
-    public StudentPostalAddress(String student_id, String street, String building_nr, String city, String postal_code, String country) {
+    public StudentPostalAddress(String student_id, String street, String building_nr, String city,
+                                String postal_code, String country) {
         this.student_id = student_id;
         this.street = street;
         this.building_nr = building_nr;

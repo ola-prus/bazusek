@@ -35,7 +35,8 @@ public class StudentHomeAddress { //join table, klucz obcy?
     public StudentHomeAddress() {
     }
 
-    public StudentHomeAddress(String student_id, String street, String building_nr, String city, String postal_code, String country) {
+    public StudentHomeAddress(String student_id, String street, String building_nr, String city,
+                              String postal_code, String country) {
         this.student_id = student_id;
         this.street = street;
         this.building_nr = building_nr;

@@ -108,7 +108,9 @@ public class TeacherDataEditPanel extends JPanel{
         JButton button = new JButton("Zapisz zmiany");
         button.addActionListener(event -> {
             System.out.println("Dodawanie nowego nauczyciela");
-            Teacher teacher = teacherDAO.save(new Teacher(textName.getText(), textSecondName.getText(), textSurname.getText(), textPesel.getText(), textMotherName.getText(), textFatherName.getText(), textPhone.getText()));   //, adZam.getText(), adKor.getText()));
+            Teacher teacher = teacherDAO.save(new Teacher(textName.getText(), textSecondName.getText(),
+                    textSurname.getText(), textPesel.getText(), textMotherName.getText(), textFatherName.getText(),
+                    textPhone.getText()));
             System.out.println("DOdany nauczyciel: "+ teacher);
         });
         add(button);
