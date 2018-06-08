@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by Ola on 2018-05-28.
  */
 @Entity
-@Table(name="Mark")
+@Table(name="mark")
 public class Mark { //stala ilosc i rodzaj ocen
 
     @Id
@@ -41,7 +41,7 @@ public class Mark { //stala ilosc i rodzaj ocen
 
     @Override
     public String toString() {
-        return "Mark{" +
+        return "mark{" +
                 "id=" + id +
                 ", mark='" + mark + '\'' +
                 '}';

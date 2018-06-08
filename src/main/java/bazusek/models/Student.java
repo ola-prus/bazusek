@@ -4,12 +4,13 @@ package bazusek.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Student")
+@Table(name="student")
 public class Student {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_student")
     private int id_student;
 
 
@@ -111,6 +112,8 @@ public class Student {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+
 
     @Override
     public String toString() {

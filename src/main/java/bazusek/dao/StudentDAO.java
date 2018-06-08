@@ -13,5 +13,6 @@ import java.util.List;
 public interface StudentDAO {
     public Student save(Student student);
     public List<Student>studentList();
-
+    public Student showStudent(int id );
+    public void delete( int id);
 }

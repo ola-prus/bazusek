@@ -1,6 +1,5 @@
 package bazusek.dao;
 
-import bazusek.models.StudentHomeAddress;
 import bazusek.models.Teacher;
 import org.springframework.stereotype.Repository;
 

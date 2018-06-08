@@ -1,14 +1,13 @@
 package bazusek.ui.views;
 
 import bazusek.dao.StudentDAO;
-import bazusek.dao.StudentDAOImpl;
+import bazusek.dao.StudentAddressDAO;
 import bazusek.models.Student;
+import bazusek.models.StudentAddress;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
 import java.util.List;
 
 /**
@@ -20,9 +19,15 @@ public class StudentListPanel extends JPanel {
     @Autowired
     StudentDAO studentDAO;
 
+    @Autowired
+    StudentAddressDAO studentAddressDAO;
+
+
     private DefaultListModel listModel;
 
     public StudentListPanel() {
+
+
         listModel = new DefaultListModel();
 
         JList list = new JList(listModel);
@@ -31,6 +36,7 @@ public class StudentListPanel extends JPanel {
 
         JScrollPane listScroller = new JScrollPane(list);
         listScroller.setPreferredSize(new Dimension(400, 400));
+        add(listScroller);
 
         JButton refreshButton = new JButton("Pokaż listę studentów");
         refreshButton.addActionListener(event -> {
@@ -38,7 +44,14 @@ public class StudentListPanel extends JPanel {
         });
         add(refreshButton);
 
-        add(listScroller);
+        JButton deleteButton = new JButton("Usuń studenta");
+        refreshButton.addActionListener(event -> {
+            studentDAO.delete(4);
+        });
+        add(deleteButton);
+
+
+
     }
 
     public void refreshStudentsList() {

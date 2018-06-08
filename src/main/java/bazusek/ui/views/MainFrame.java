@@ -3,8 +3,6 @@ package bazusek.ui.views;
 /**
  * Created by Ola on 2018-05-28.
  */
-import bazusek.dao.MarkDAO;
-import bazusek.dao.StudentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.awt.*;
@@ -32,10 +30,8 @@ public class MainFrame extends JFrame {
     SubjectTeacherEditPanel subjectTeacherEditPanel;
 
     @Autowired
-    StudentHomeAddressEditPanel studentHomeAddressEditPanel;
+    StudentAddressEditPanel studentAddressEditPanel;
 
-    @Autowired
-    StudentPostalAddressEditPanel studentPostalAddressEditPanel;
 
     public void init() {
 
@@ -46,7 +42,7 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
 
         setJMenuBar(new AppMenu(this, studentListPanel, studentMarkEditPanel,studentDataEditPanel, teacherListPanel,
-                teacherDataEditPanel, subjectTeacherEditPanel, studentHomeAddressEditPanel, studentPostalAddressEditPanel));
+                teacherDataEditPanel, subjectTeacherEditPanel, studentAddressEditPanel));
 
         setContentPane(studentListPanel);
         studentListPanel.setVisible(false);
@@ -60,11 +56,8 @@ public class MainFrame extends JFrame {
         teacherDataEditPanel.setVisible(false);
         setContentPane(subjectTeacherEditPanel);
         subjectTeacherEditPanel.setVisible(false);
-        setContentPane(studentHomeAddressEditPanel);
-        studentHomeAddressEditPanel.setVisible(false);
-        setContentPane(studentPostalAddressEditPanel);
-        studentPostalAddressEditPanel.setVisible(false);
-
+        setContentPane(studentAddressEditPanel);
+        studentAddressEditPanel.setVisible(false);
 
         setState(Frame.NORMAL);
         setVisible(true);

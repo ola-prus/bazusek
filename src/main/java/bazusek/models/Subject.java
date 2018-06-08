@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name="Subject")
+@Table(name="subject")
 public class Subject { //stala ilosc i rodzaj przedmiotow
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,7 @@ public class Subject { //stala ilosc i rodzaj przedmiotow
 
     @Override
     public String toString() {
-        return "Subject{" +
+        return "subject{" +
                 "id_subject=" + id_subject +
                 ", subject='" + subject + '\'' +
                 '}';

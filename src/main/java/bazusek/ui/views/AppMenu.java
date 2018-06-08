@@ -9,8 +9,8 @@ public class AppMenu extends JMenuBar {
 
     public AppMenu(MainFrame mainFrame, StudentListPanel studentListPanel, StudentMarkEditPanel studentMarkEditPanel,
                    StudentDataEditPanel studentDataEditPanel, TeacherListPanel teacherListPanel, TeacherDataEditPanel teacherDataEditPanel,
-                   SubjectTeacherEditPanel subjectTeacherEditPanel, StudentHomeAddressEditPanel studentHomeAddressEditPanel,
-                   StudentPostalAddressEditPanel studentPostalAddressEditPanel) {
+                   SubjectTeacherEditPanel subjectTeacherEditPanel, StudentAddressEditPanel studentAddressEditPanel) {
+
         JMenu menu = new JMenu("Student");
         JMenu menu2=new JMenu("Nauczyciel");
         add(menu);
@@ -25,8 +25,7 @@ public class AppMenu extends JMenuBar {
             teacherListPanel.setVisible(false);
             teacherDataEditPanel.setVisible(false);
             subjectTeacherEditPanel.setVisible(false);
-            studentHomeAddressEditPanel.setVisible(false);
-            studentPostalAddressEditPanel.setVisible(false);
+            studentAddressEditPanel.setVisible(false);
             studentListPanel.setVisible(true);
         });
         menu.add(studentListItem);
@@ -40,8 +39,7 @@ public class AppMenu extends JMenuBar {
             teacherListPanel.setVisible(false);
             teacherDataEditPanel.setVisible(false);
             subjectTeacherEditPanel.setVisible(false);
-            studentHomeAddressEditPanel.setVisible(false);
-            studentPostalAddressEditPanel.setVisible(false);
+            studentAddressEditPanel.setVisible(false);
             studentDataEditPanel.setVisible(true);
 
         });
@@ -56,44 +54,26 @@ public class AppMenu extends JMenuBar {
             teacherListPanel.setVisible(false);
             teacherDataEditPanel.setVisible(false);
             subjectTeacherEditPanel.setVisible(false);
-            studentHomeAddressEditPanel.setVisible(false);
-            studentPostalAddressEditPanel.setVisible(false);
+            studentAddressEditPanel.setVisible(false);
             studentMarkEditPanel.setVisible(true);
 
         });
         menu.add(studentMarksItem);
 
-        JMenuItem studentHomeAddressItem = new JMenuItem("Adres zameldowania");
+        JMenuItem studentHomeAddressItem = new JMenuItem("Adres studenta / Edycja");
         studentHomeAddressItem.addActionListener(event -> {
-            System.out.println("Przejscie do adresu zameldowania");
-            mainFrame.setContentPane(studentHomeAddressEditPanel);
+            System.out.println("Przejscie do edycji adresu studenta");
+            mainFrame.setContentPane(studentAddressEditPanel);
             studentMarkEditPanel.setVisible(false);
             studentDataEditPanel.setVisible(false);
             teacherListPanel.setVisible(false);
             teacherDataEditPanel.setVisible(false);
             subjectTeacherEditPanel.setVisible(false);
             studentListPanel.setVisible(false);
-            studentPostalAddressEditPanel.setVisible(false);
-            studentHomeAddressEditPanel.setVisible(true);
+            studentAddressEditPanel.setVisible(true);
 
         });
         menu.add(studentHomeAddressItem);
-
-        JMenuItem studentPostalAddressItem = new JMenuItem("Adres do korespondencji");
-        studentHomeAddressItem.addActionListener(event -> {
-            System.out.println("Przejscie do adresu do korespondencji");
-            mainFrame.setContentPane(studentPostalAddressEditPanel);
-            studentMarkEditPanel.setVisible(false);
-            studentDataEditPanel.setVisible(false);
-            teacherListPanel.setVisible(false);
-            teacherDataEditPanel.setVisible(false);
-            subjectTeacherEditPanel.setVisible(false);
-            studentListPanel.setVisible(false);
-            studentHomeAddressEditPanel.setVisible(false);
-            studentPostalAddressEditPanel.setVisible(true);
-
-        });
-        menu.add(studentPostalAddressItem);
 
         JMenuItem teacherListItem = new JMenuItem("Lista nauczycieli");
         teacherListItem.addActionListener(event -> {
@@ -104,8 +84,7 @@ public class AppMenu extends JMenuBar {
             studentListPanel.setVisible(false);
             teacherDataEditPanel.setVisible(false);
             subjectTeacherEditPanel.setVisible(false);
-            studentHomeAddressEditPanel.setVisible(false);
-            studentPostalAddressEditPanel.setVisible(false);
+            studentAddressEditPanel.setVisible(false);
             teacherListPanel.setVisible(true);
         });
         menu2.add(teacherListItem);
@@ -119,8 +98,7 @@ public class AppMenu extends JMenuBar {
             studentListPanel.setVisible(false);
             teacherListPanel.setVisible(false);
             subjectTeacherEditPanel.setVisible(false);
-            studentHomeAddressEditPanel.setVisible(false);
-            studentPostalAddressEditPanel.setVisible(false);
+            studentAddressEditPanel.setVisible(false);
             teacherDataEditPanel.setVisible(true);
         });
         menu2.add(teacherDataEditItem);
@@ -134,8 +112,7 @@ public class AppMenu extends JMenuBar {
             studentListPanel.setVisible(false);
             teacherListPanel.setVisible(false);
             teacherDataEditPanel.setVisible(false);
-            studentHomeAddressEditPanel.setVisible(false);
-            studentPostalAddressEditPanel.setVisible(false);
+            studentAddressEditPanel.setVisible(false);
             subjectTeacherEditPanel.setVisible(true);
         });
         menu2.add(subjectsItem);

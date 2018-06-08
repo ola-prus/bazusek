@@ -45,9 +45,14 @@ public class DbConfig {
    public DataSource dataSource() {
       DriverManagerDataSource dataSource = new DriverManagerDataSource();
       dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-      dataSource.setUrl("jdbc:mysql://xxxxxxxxxxxxxxx/x");
-      dataSource.setUsername("xxxxx");
-      dataSource.setPassword("xxxxxxxxxx");
+      dataSource.setUrl("jdbc:mysql://212.182.6.126:3306/ola");
+      dataSource.setUsername("ola");
+      dataSource.setPassword("Ola!ola");
+
+//      dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//      dataSource.setUrl("jdbc:mysql://xxxxxxxxxxxxxxx/x");
+//      dataSource.setUsername("xxxxx");
+//      dataSource.setPassword("xxxxxxxxxx");
 
       return dataSource;
    }
@@ -56,7 +61,7 @@ public class DbConfig {
    @Bean(name = "sessionFactory")
    public SessionFactory getSessionFactory(DataSource dataSource) {
       LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-      sessionBuilder.addAnnotatedClasses(Student.class, Subject.class, Mark.class, Teacher.class, StudentHomeAddress.class, StudentPostalAddress.class); //jak bedzie wiecej modeli to tu dodaj
+      sessionBuilder.addAnnotatedClasses(Student.class, Subject.class, Mark.class, Teacher.class, StudentAddress.class);
       sessionBuilder.addProperties(getHibernateProperties());
       return sessionBuilder.buildSessionFactory();
    }
@@ -90,5 +95,6 @@ public class DbConfig {
    @Bean
    public SubjectDAO subjectDAO(){return new SubjectDAOImpl();}
 
-
+   @Bean
+   public StudentAddressDAO studentHomeAddressDAO(){return new StudentAddressDAOImpl();}
 }

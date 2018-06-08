@@ -18,7 +18,7 @@ public class AppConfig {
     MainFrame mainFrame(){return new MainFrame();}
 
     @Bean
-    public StudentListPanel studentSpherePanel() {
+    public StudentListPanel studentListPanel() {
         return new StudentListPanel();
     }
 
@@ -38,11 +38,10 @@ public class AppConfig {
     SubjectTeacherEditPanel subjectsPanel(){return new SubjectTeacherEditPanel();}
 
     @Bean
-    StudentHomeAddressEditPanel studentHomeAddressEditPanel(){return new StudentHomeAddressEditPanel();}
-
-    @Bean
-    StudentPostalAddressEditPanel studentPostalAddressEditPanel(){return new StudentPostalAddressEditPanel();}
+    StudentAddressEditPanel studentHomeAddressEditPanel(){return new StudentAddressEditPanel();}
 
     @PostConstruct
-    public void initialize() {mainFrame().init();}
+    public void initialize() {
+        mainFrame().init();
+    }
 }

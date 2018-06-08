@@ -2,6 +2,7 @@ package bazusek.ui.views;
 
 import bazusek.dao.StudentDAO;
 import bazusek.models.Student;
+import bazusek.models.StudentAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
@@ -102,6 +103,20 @@ public class StudentDataEditPanel extends JPanel  {
         phone.setLabelFor(textPhone);
         add(textPhone, 6, 1);
 
+        JButton button1 = new JButton("Pokaż dane studenta");
+        button1.addActionListener(event -> {
+            System.out.println("Edytuj dane");
+            Student student = studentDAO.showStudent(1);
+            textName.setText(student.getFirst_name());
+            textSecondName.setText(student.getSecond_name());
+            textSurname.setText(student.getLast_name());
+            textPesel.setText(student.getPesel());
+            textMotherName.setText(student.getMother_name());
+            textFatherName.setText(student.getFather_name());
+            textPhone.setText(student.getPhone());
+        });
+        add(button1);
+        
         JButton button = new JButton("Zapisz zmiany");
         button.addActionListener(event -> {
             System.out.println("Dodawanie nowego studenta");
