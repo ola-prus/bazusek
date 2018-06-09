@@ -56,7 +56,7 @@ public class StudentDAOImpl implements StudentDAO {
 	@Transactional
 	public Student showStudent(int id ){
 		Student student=getSession().load(Student.class,id);
-		System.out.println("student zaladowany z sesji");
+		System.out.println("student wybrany");
 		System.out.println(student);
 		return student;
 

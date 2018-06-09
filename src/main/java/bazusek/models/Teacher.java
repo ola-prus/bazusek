@@ -32,8 +32,8 @@ public class Teacher {
 
     @Column
     private String father_name;
-    @Column
 
+    @Column
     private String phone;
 
     public Teacher() {

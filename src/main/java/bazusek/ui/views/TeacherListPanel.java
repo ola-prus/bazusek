@@ -21,6 +21,9 @@ public class TeacherListPanel extends JPanel {
     private DefaultListModel listModel;
 
     public TeacherListPanel() {
+
+        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+
         listModel = new DefaultListModel();
 
         JList list = new JList(listModel);
@@ -37,6 +40,12 @@ public class TeacherListPanel extends JPanel {
         add(refreshButton);
 
         add(listScroller);
+
+        JButton deleteButton = new JButton("Usuń nauczyciela");
+        deleteButton.addActionListener(event -> {
+            teacherDAO.delete(1);
+        });
+        add(deleteButton);
     }
 
     public void refreshTeacherList() {

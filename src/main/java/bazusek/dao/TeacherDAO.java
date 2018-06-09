@@ -12,4 +12,6 @@ import java.util.List;
 public interface TeacherDAO {
     public Teacher save(Teacher teacher);
     public List<Teacher> teacherList();
+    public Teacher showTeacher(int id );
+    public void delete( int id);
 }

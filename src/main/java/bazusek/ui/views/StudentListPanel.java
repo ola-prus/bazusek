@@ -19,14 +19,17 @@ public class StudentListPanel extends JPanel {
     @Autowired
     StudentDAO studentDAO;
 
-    @Autowired
-    StudentAddressDAO studentAddressDAO;
-
-
     private DefaultListModel listModel;
 
     public StudentListPanel() {
 
+        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+
+        JButton refreshButton = new JButton("Pokaż listę studentów");
+        refreshButton.addActionListener(event -> {
+            refreshStudentList();
+        });
+        add(refreshButton);
 
         listModel = new DefaultListModel();
 
@@ -38,23 +41,14 @@ public class StudentListPanel extends JPanel {
         listScroller.setPreferredSize(new Dimension(400, 400));
         add(listScroller);
 
-        JButton refreshButton = new JButton("Pokaż listę studentów");
-        refreshButton.addActionListener(event -> {
-            refreshStudentsList();
-        });
-        add(refreshButton);
-
         JButton deleteButton = new JButton("Usuń studenta");
-        refreshButton.addActionListener(event -> {
-            studentDAO.delete(4);
+        deleteButton.addActionListener(event -> {
+            studentDAO.delete(3);
         });
         add(deleteButton);
-
-
-
     }
 
-    public void refreshStudentsList() {
+    public void refreshStudentList() {
         listModel.clear();
         List<Student> studentList = studentDAO.studentList();
         for (int i = 0; i < studentList.size(); i++) {

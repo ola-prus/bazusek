@@ -42,4 +42,20 @@ public class TeacherDAOImpl implements TeacherDAO {
         System.out.println("nauczyciel zapisany");
         return teacher;
     }
+
+    @Transactional
+    public Teacher showTeacher(int id ){
+        Teacher teacher=getSession().load(Teacher.class,id);
+        System.out.println("nauczyciel wybrany");
+        System.out.println(teacher);
+        return teacher;
+
+    }
+    @Transactional
+    public void delete( int id) {
+        Teacher teacher=getSession().load(Teacher.class,id);
+        System.out.println("nauczyciel wybrany");
+        getSession().delete(teacher);
+        System.out.println("nauczyciel usunięty");
+    }
 }
