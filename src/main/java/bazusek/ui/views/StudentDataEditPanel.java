@@ -16,6 +16,10 @@ public class StudentDataEditPanel extends JPanel  {
     @Autowired
     StudentDAO studentDAO;
 
+    @Autowired
+    StudentListPanel studentListPanel;
+
+
     public StudentDataEditPanel() {
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -106,8 +110,9 @@ public class StudentDataEditPanel extends JPanel  {
         add(textPhone);
 
          button1.addActionListener(event -> {
+
             System.out.println("Edytuj dane");
-            Student student = studentDAO.showStudent(1);
+            Student student = studentDAO.showStudent(studentListPanel.getNr());
             textName.setText(student.getFirst_name());
             textSecondName.setText(student.getSecond_name());
             textSurname.setText(student.getLast_name());
