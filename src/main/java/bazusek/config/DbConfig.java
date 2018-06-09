@@ -1,6 +1,7 @@
 package bazusek.config;
 
 import bazusek.dao.*;
+import bazusek.daoImpl.*;
 import bazusek.models.*;
 
 import java.util.Properties;
@@ -61,7 +62,8 @@ public class DbConfig {
    @Bean(name = "sessionFactory")
    public SessionFactory getSessionFactory(DataSource dataSource) {
       LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-      sessionBuilder.addAnnotatedClasses(Student.class, Subject.class, Mark.class, Teacher.class, StudentAddress.class);
+      sessionBuilder.addAnnotatedClasses(Student.class, Subject.class, Mark.class, Teacher.class, StudentAddress.class, MarksDisplay.class,
+              TeacherAssignment.class);
       sessionBuilder.addProperties(getHibernateProperties());
       return sessionBuilder.buildSessionFactory();
    }
@@ -97,4 +99,7 @@ public class DbConfig {
 
    @Bean
    public StudentAddressDAO studentHomeAddressDAO(){return new StudentAddressDAOImpl();}
+
+   @Bean
+   public TeacherAssignmentDAO teacherAssignmentDAO(){return new TeacherAssignmentDAOImpl();}
 }

@@ -1,6 +1,6 @@
 package bazusek.config;
 
-import bazusek.ui.views.*;
+import bazusek.views.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
