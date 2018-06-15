@@ -1,6 +1,7 @@
 package bazusek.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Ola on 2018-05-28.
@@ -8,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="subject")
-public class Subject {
+public class Subject implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idSubject;

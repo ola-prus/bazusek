@@ -10,6 +10,7 @@ public class StudentMarkEditPanel extends JPanel {
 
     public StudentMarkEditPanel() {
 
+        //w budowie
 
     }
 }

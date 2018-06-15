@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Ola on 2018-05-29.
  */
 @Repository
-public interface MarkDAO {
+public interface MarkDao {
     public Mark save(Mark mark);
     public List<Mark> marksList();
 

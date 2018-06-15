@@ -1,17 +1,11 @@
 package bazusek.views;
 
-import bazusek.dao.TeacherAssignmentDAO;
-import bazusek.models.Subject;
-import bazusek.models.Teacher;
-import bazusek.models.TeacherAssignment;
+import bazusek.dao.TeacherAssignmentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
-import java.awt.*;
-import java.util.*;
-import java.util.List;
 
 /**
  * Created by Ola on 2018-05-31.
@@ -19,11 +13,12 @@ import java.util.List;
 public class SubjectTeacherEditPanel extends JPanel {
 
     @Autowired
-    TeacherAssignmentDAO teacherAssignmentDAO;
-
+    TeacherAssignmentDao teacherAssignmentDao;
 
     int selectionNr;
+
     TableModel dataModel;
+
     public SubjectTeacherEditPanel() {
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -42,12 +37,6 @@ public class SubjectTeacherEditPanel extends JPanel {
 
     }
     public void refreshList() {
-//         datamodel.clear();
-//        List<TeacherAssignment> list = teacherAssignmentDAO.teacherAssignmentList();
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.println(teacherAssignmentDAO.teacherAssignmentList());
-//            listModel.addElement( list.get(i).getId()+". "+list.get(i).getSubject().getSubject()+" - "+
-//                    list.get(i).getTeacher().getFirstName()+ " "+list.get(i).getTeacher().getLastName());
-        }
+ }
     }
 

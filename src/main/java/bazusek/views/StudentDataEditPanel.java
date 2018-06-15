@@ -1,10 +1,11 @@
 package bazusek.views;
 
-import bazusek.dao.StudentDAO;
+import bazusek.dao.StudentDao;
 import bazusek.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
+import java.util.logging.Logger;
 
 /**
  * Created by Ola on 2018-05-29.
@@ -12,123 +13,124 @@ import javax.swing.*;
 public class StudentDataEditPanel extends JPanel  {
 
     @Autowired
-    StudentDAO studentDAO;
+    StudentDao studentDao;
 
     @Autowired
     StudentListPanel studentListPanel;
 
+    private static final Logger logger = Logger.getLogger(StudentDataEditPanel.class.getName());
 
     public StudentDataEditPanel() {
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
 
-        JButton showDataButton = new JButton("Pokaż dane studenta");
-        add(showDataButton);
+        JButton sShowDataButton = new JButton("Pokaż dane studenta");
+        add(sShowDataButton);
 
-        String[] labels = {"imię:", "drugie imię:", "nazwisko:", "pesel:", "imię matki:", "imię ojca:", "telefon:"};
+        String[] labels = {"imię:", "drugie imię:", "nazwisko:", "sPesel:", "imię matki:", "imię ojca:", "telefon:"};
 
         updateUI();
 
-        JLabel name = new JLabel(labels[0], JLabel.TRAILING);
-        name.setLocation(0, 1);
-        name.setSize(1, 1);
-        add(name);
+        JLabel sName = new JLabel(labels[0], JLabel.TRAILING);
+        sName.setLocation(0, 1);
+        sName.setSize(1, 1);
+        add(sName);
 
-        JTextField textName = new JTextField();
-         textName.setEditable(true);
-        textName.setSize(25, 20);
-        name.setLabelFor(textName);
-        add(textName);
+        JTextField sTextName = new JTextField();
+         sTextName.setEditable(true);
+        sTextName.setSize(25, 20);
+        sName.setLabelFor(sTextName);
+        add(sTextName);
 
-        JLabel secondName = new JLabel(labels[1], JLabel.TRAILING);
-        secondName.setLocation(1, 1);
-        secondName.setSize(1, 1);
-        add(secondName);
+        JLabel sSecondName = new JLabel(labels[1], JLabel.TRAILING);
+        sSecondName.setLocation(1, 1);
+        sSecondName.setSize(1, 1);
+        add(sSecondName);
 
-        JTextField textSecondName = new JTextField();
-        textSecondName.setEditable(true);
-        textSecondName.setSize(25, 20);
-        secondName.setLabelFor(textSecondName);
-        add(textSecondName);
+        JTextField sTextSecondName = new JTextField();
+        sTextSecondName.setEditable(true);
+        sTextSecondName.setSize(25, 20);
+        sSecondName.setLabelFor(sTextSecondName);
+        add(sTextSecondName);
 
-        JLabel surname = new JLabel(labels[2], JLabel.TRAILING);
-        surname.setLocation(2, 1);
-        surname.setSize(1, 1);
-        add(surname);
+        JLabel sLastName = new JLabel(labels[2], JLabel.TRAILING);
+        sLastName.setLocation(2, 1);
+        sLastName.setSize(1, 1);
+        add(sLastName);
 
-        JTextField textSurname = new JTextField();
-        textSurname.setEditable(true);
-        textSurname.setSize(25, 20);
-        surname.setLabelFor(textSecondName);
-        add(textSurname);
+        JTextField sTextLastName = new JTextField();
+        sTextLastName.setEditable(true);
+        sTextLastName.setSize(25, 20);
+        sLastName.setLabelFor(sTextSecondName);
+        add(sTextLastName);
 
-        JLabel pesel = new JLabel(labels[3], JLabel.TRAILING);
-        pesel.setLocation(3, 1);
-        pesel.setSize(1, 1);
-        add(pesel);
+        JLabel sPesel = new JLabel(labels[3], JLabel.TRAILING);
+        sPesel.setLocation(3, 1);
+        sPesel.setSize(1, 1);
+        add(sPesel);
 
-        JTextField textPesel = new JTextField();
-        textPesel.setEditable(true);
-        textPesel.setSize(25, 20);
-        pesel.setLabelFor(textPesel);
-        add(textPesel);
+        JTextField sTextPesel = new JTextField();
+        sTextPesel.setEditable(true);
+        sTextPesel.setSize(25, 20);
+        sPesel.setLabelFor(sTextPesel);
+        add(sTextPesel);
 
-        JLabel motherName = new JLabel(labels[4], JLabel.TRAILING);
-        motherName.setLocation(4, 1);
-        motherName.setSize(1, 1);
-        add(motherName);
+        JLabel sMotherName = new JLabel(labels[4], JLabel.TRAILING);
+        sMotherName.setLocation(4, 1);
+        sMotherName.setSize(1, 1);
+        add(sMotherName);
 
-        JTextField textMotherName = new JTextField();
-        textMotherName.setEditable(true);
-        textMotherName.setSize(25, 20);
-        motherName.setLabelFor(textMotherName);
-        add(textMotherName);
+        JTextField sTextMotherName = new JTextField();
+        sTextMotherName.setEditable(true);
+        sTextMotherName.setSize(25, 20);
+        sMotherName.setLabelFor(sTextMotherName);
+        add(sTextMotherName);
 
-        JLabel fatherName = new JLabel(labels[5], JLabel.TRAILING);
-        fatherName.setLocation(5, 1);
-        fatherName.setSize(1, 1);
-        add(fatherName);
+        JLabel sFatherName = new JLabel(labels[5], JLabel.TRAILING);
+        sFatherName.setLocation(5, 1);
+        sFatherName.setSize(1, 1);
+        add(sFatherName);
 
-        JTextField textFatherName = new JTextField();
-        textFatherName.setEditable(true);
-        textFatherName.setSize(25, 20);
-        fatherName.setLabelFor(textFatherName);
-        add(textFatherName);
+        JTextField sTextFatherName = new JTextField();
+        sTextFatherName.setEditable(true);
+        sTextFatherName.setSize(25, 20);
+        sFatherName.setLabelFor(sTextFatherName);
+        add(sTextFatherName);
 
-        JLabel phone = new JLabel(labels[6], JLabel.TRAILING);
-        phone.setLocation(6, 1);
-        phone.setSize(1, 1);
-        add(phone);
+        JLabel sPhone = new JLabel(labels[6], JLabel.TRAILING);
+        sPhone.setLocation(6, 1);
+        sPhone.setSize(1, 1);
+        add(sPhone);
 
-        JTextField textPhone = new JTextField();
-        textPhone.setEditable(true);
-        textPhone.setSize(25, 20);
-        phone.setLabelFor(textPhone);
-        add(textPhone);
+        JTextField sTextPhone = new JTextField();
+        sTextPhone.setEditable(true);
+        sTextPhone.setSize(25, 20);
+        sPhone.setLabelFor(sTextPhone);
+        add(sTextPhone);
 
-        showDataButton.addActionListener(event -> {
-            System.out.println("Edytuj dane");
+        sShowDataButton.addActionListener(event -> {
+            logger.info("Edytuj dane");
             if (studentListPanel.getNr()!=0) {
-                Student student = studentDAO.showStudent(studentListPanel.getNr());
-                textName.setText(student.getFirstName());
-                textSecondName.setText(student.getSecondName());
-                textSurname.setText(student.getLastName());
-                textPesel.setText(student.getPesel());
-                textMotherName.setText(student.getMotherName());
-                textFatherName.setText(student.getFatherName());
-                textPhone.setText(student.getPhone());
+                Student student = studentDao.showStudent(studentListPanel.getNr());
+                sTextName.setText(student.getsFirstName());
+                sTextSecondName.setText(student.getsSecondName());
+                sTextLastName.setText(student.getsLastName());
+                sTextPesel.setText(student.getsPesel());
+                sTextMotherName.setText(student.getsMotherName());
+                sTextFatherName.setText(student.getsFatherName());
+                sTextPhone.setText(student.getsPhone());
             }
         });
 
-        JButton saveButton = new JButton("Zapisz zmiany");
-        saveButton.addActionListener(event -> {
-            System.out.println("Dodawanie nowego studenta");
-            Student student = studentDAO.save(new Student(textName.getText(), textSecondName.getText(), textSurname.getText(),
-                    textPesel.getText(), textMotherName.getText(), textFatherName.getText(), textPhone.getText()));
-            System.out.println("DOdany student: "+ student);
+        JButton sSaveButton = new JButton("Zapisz zmiany");
+        sSaveButton.addActionListener(event -> {
+            logger.info("Dodawanie nowego studenta");
+            Student student = studentDao.save(new Student(sTextName.getText(), sTextSecondName.getText(), sTextLastName.getText(),
+                    sTextPesel.getText(), sTextMotherName.getText(), sTextFatherName.getText(), sTextPhone.getText()));
+            logger.info("Student dodany");
        });
-        add(saveButton);
+        add(sSaveButton);
         updateUI();
     }
 }

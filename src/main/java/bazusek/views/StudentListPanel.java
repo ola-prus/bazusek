@@ -1,6 +1,6 @@
 package bazusek.views;
 
-import bazusek.dao.StudentDAO;
+import bazusek.dao.StudentDao;
 import bazusek.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,6 +9,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.List;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Created by Ola on 2018-05-22.
@@ -41,10 +43,13 @@ public class StudentListPanel extends JPanel {
     MainFrame mainFrame;
 
     @Autowired
-    StudentDAO studentDAO;
+    StudentDao studentDao;
 
-    private DefaultListModel listModel;
-    int selectionNr;
+    private DefaultListModel sListModel;
+
+    int sSelectionNr;
+
+    private static final Logger logger = Logger.getLogger(StudentListPanel.class.getName());
 
     public StudentListPanel() {
 
@@ -56,27 +61,27 @@ public class StudentListPanel extends JPanel {
         });
         add(refreshButton);
 
-        listModel = new DefaultListModel();
+        sListModel = new DefaultListModel();
 
-        JList list = new JList(listModel);
-        list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-        list.addListSelectionListener(new ListSelectionListener() {
+        JList sList = new JList(sListModel);
+        sList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        sList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        sList.addListSelectionListener(new ListSelectionListener() {
               public void valueChanged(ListSelectionEvent evt) {
                   if (evt.getValueIsAdjusting())
                       return;
-                  System.out.println("Selected "+listModel.getElementAt(evt.getLastIndex()));
-                  String text= listModel.getElementAt(evt.getLastIndex()).toString();
-                  selectionNr=Integer.parseInt(text.replaceAll("[^0-9]", ""));
+                  logger.info("Selected "+sListModel.getElementAt(evt.getLastIndex()));
+                  String text= sListModel.getElementAt(evt.getLastIndex()).toString();
+                  sSelectionNr=Integer.parseInt(text.replaceAll("[^0-9]", ""));
               }
           });
-        JScrollPane listScroller = new JScrollPane(list);
+        JScrollPane listScroller = new JScrollPane(sList);
         listScroller.setPreferredSize(new Dimension(400, 200));
         add(listScroller);
 
-        JButton dataButton = new JButton("Szczegółowe dane / Edycja");
-        dataButton.addActionListener(event -> {
-            System.out.println("Przejscie do edycji danych studenta");
+        JButton sDataButton = new JButton("Szczegółowe dane / Edycja");
+        sDataButton.addActionListener(event -> {
+            logger.info("Przejscie do edycji danych studenta");
             mainFrame.setContentPane(studentDataEditPanel);
             studentListPanel.setVisible(false);
             studentMarkEditPanel.setVisible(false);
@@ -87,11 +92,11 @@ public class StudentListPanel extends JPanel {
             studentDataEditPanel.setVisible(true);
 
         });
-        add(dataButton);
+        add(sDataButton);
 
         JButton addressButton = new JButton("Adres / Edycja");
         addressButton.addActionListener(event -> {
-            System.out.println("Przejscie do edycji adresu studenta");
+            logger.info("Przejscie do edycji adresu studenta");
             mainFrame.setContentPane(studentAddressEditPanel);
             studentListPanel.setVisible(false);
             studentMarkEditPanel.setVisible(false);
@@ -106,7 +111,7 @@ public class StudentListPanel extends JPanel {
 
         JButton showMarkButton = new JButton("Oceny / Edycja");
         showMarkButton.addActionListener(event -> {
-            System.out.println("Przejście do ocen studenta");
+            logger.info("Przejście do ocen studenta");
             mainFrame.setContentPane(studentMarkEditPanel);
             studentListPanel.setVisible(false);
             studentMarkEditPanel.setVisible(true);
@@ -119,10 +124,10 @@ public class StudentListPanel extends JPanel {
         });
         add(showMarkButton);
 
-        JButton addButton = new JButton("Dodaj nowego studenta");
-        addButton.addActionListener(event -> {
-            System.out.println("Przejscie do dodawania studenta");
-            selectionNr=0;
+        JButton sAddButton = new JButton("Dodaj nowego studenta");
+        sAddButton.addActionListener(event -> {
+            logger.info("Przejscie do dodawania studenta");
+            sSelectionNr=0;
             mainFrame.setContentPane(studentDataEditPanel);
             studentListPanel.setVisible(false);
             studentMarkEditPanel.setVisible(false);
@@ -133,27 +138,26 @@ public class StudentListPanel extends JPanel {
             studentDataEditPanel.setVisible(true);
 
         });
-        add(addButton);
+        add(sAddButton);
 
-        JButton deleteButton = new JButton("Usuń studenta");
-        deleteButton.addActionListener(event -> {
-            studentDAO.delete(selectionNr);
+        JButton sDeleteButton = new JButton("Usuń studenta");
+        sDeleteButton.addActionListener(event -> {
+            studentDao.delete(sSelectionNr);
         });
-        add(deleteButton);
+        add(sDeleteButton);
     }
 
     public void refreshStudentList() {
-        listModel.clear();
-        List<Student> studentList = studentDAO.studentList();
+        sListModel.clear();
+        List<Student> studentList = studentDao.studentList();
         for (int i = 0; i < studentList.size(); i++) {
-            System.out.println(studentDAO.studentList());
-            listModel.addElement( studentList.get(i).getIdStudent()+". " + studentList.get(i).getFirstName() + " "
-                    + studentList.get(i).getLastName());
+            sListModel.addElement( studentList.get(i).getIdStudent()+". " + studentList.get(i).getsFirstName() + " "
+                    + studentList.get(i).getsLastName());
         }
     }
 
     public int getNr(){
-        return selectionNr;
+        return sSelectionNr;
     }
 
 

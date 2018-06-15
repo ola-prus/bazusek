@@ -1,13 +1,14 @@
 package bazusek.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Ola on 2018-06-01.
  */
 @Entity
 @Table(name="teacher")
-public class Teacher {
+public class Teacher implements Serializable {
 
 
     @Id
@@ -16,39 +17,39 @@ public class Teacher {
 
 
     @Column
-    private String firstName;
+    private String tFirstName;
 
     @Column
-    private String secondName;
+    private String tSecondName;
 
     @Column
-    private String lastName;
+    private String tLastName;
 
     @Column
-    private String pesel;
+    private String tPesel;
 
     @Column
-    private String motherName;
+    private String tMotherName;
 
     @Column
-    private String fatherName;
+    private String tFatherName;
 
     @Column
-    private String phone;
+    private String tPhone;
 
     public Teacher() {
     }
 
 
-    public Teacher(String firstName, String secondName, String lastName, String pesel, String motherName,
-                   String fatherName, String phone) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.lastName = lastName;
-        this.pesel = pesel;
-        this.motherName = motherName;
-        this.fatherName = fatherName;
-        this.phone = phone;
+    public Teacher(String tFirstName, String tSecondName, String tLastName, String tPesel, String tMotherName,
+                   String tFatherName, String tPhone) {
+        this.tFirstName = tFirstName;
+        this.tSecondName = tSecondName;
+        this.tLastName = tLastName;
+        this.tPesel = tPesel;
+        this.tMotherName = tMotherName;
+        this.tFatherName = tFatherName;
+        this.tPhone = tPhone;
     }
 
 
@@ -60,65 +61,65 @@ public class Teacher {
         this.idTeacher = idTeacher;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String gettFirstName() {
+        return tFirstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void settFirstName(String tFirstName) {
+        this.tFirstName = tFirstName;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String gettSecondName() {
+        return tSecondName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void settSecondName(String tSecondName) {
+        this.tSecondName = tSecondName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String gettLastName() {
+        return tLastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void settLastName(String tLastName) {
+        this.tLastName = tLastName;
     }
 
-    public String getPesel() {
-        return pesel;
+    public String gettPesel() {
+        return tPesel;
     }
 
-    public void setPesel(String pesel) {
-        this.pesel = pesel;
+    public void settPesel(String tPesel) {
+        this.tPesel = tPesel;
     }
 
-    public String getMotherName() {
-        return motherName;
+    public String gettMotherName() {
+        return tMotherName;
     }
 
-    public void setMotherName(String motherName) {
-        this.motherName = motherName;
+    public void settMotherName(String tMotherName) {
+        this.tMotherName = tMotherName;
     }
 
-    public String getFatherName() {
-        return fatherName;
+    public String gettFatherName() {
+        return tFatherName;
     }
 
-    public void setFatherName(String fatherName) {
-        this.fatherName = fatherName;
+    public void settFatherName(String tFatherName) {
+        this.tFatherName = tFatherName;
     }
 
-    public String getPhone() {
-        return phone;
+    public String gettPhone() {
+        return tPhone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void settPhone(String tPhone) {
+        this.tPhone = tPhone;
     }
 
     @Override
     public String toString() {
-        return " idTeacher: " + idTeacher + " imie: " + firstName + " drugie imie:" + secondName + " nazwisko: "
-                + lastName + " pesel: " + pesel + " imie matki: " + motherName + " imie ojca: " + fatherName + " telefon: " + phone;
+        return " idTeacher: " + idTeacher + " imie: " + tFirstName + " drugie imie:" + tSecondName + " nazwisko: "
+                + tLastName + " tPesel: " + tPesel + " imie matki: " + tMotherName + " imie ojca: " + tFatherName + " telefon: " + tPhone;
     }
 }

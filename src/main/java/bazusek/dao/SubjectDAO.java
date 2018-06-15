@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Ola on 2018-05-29.
  */
 @Repository
-public interface SubjectDAO {
+public interface SubjectDao {
     public Subject save(Subject subject);
     public List<Subject> subjectList();
 

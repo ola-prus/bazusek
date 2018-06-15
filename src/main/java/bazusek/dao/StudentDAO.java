@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @Repository
-public interface StudentDAO {
+public interface StudentDao {
     public Student save(Student student);
     public List<Student>studentList();
     public Student showStudent(int id );

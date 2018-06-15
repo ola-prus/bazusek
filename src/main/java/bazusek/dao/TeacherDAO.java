@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Ola on 2018-06-01.
  */
 @Repository
-public interface TeacherDAO {
+public interface TeacherDao {
     public Teacher save(Teacher teacher);
     public List<Teacher> teacherList();
     public Teacher showTeacher(int id );

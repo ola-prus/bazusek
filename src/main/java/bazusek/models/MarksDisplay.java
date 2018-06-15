@@ -1,13 +1,14 @@
 package bazusek.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Ola on 2018-06-09.
  */
 @Entity
 @Table(name = "marksDisplay")
-public class MarksDisplay {
+public class MarksDisplay implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

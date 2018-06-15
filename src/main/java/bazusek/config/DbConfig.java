@@ -1,7 +1,7 @@
 package bazusek.config;
 
 import bazusek.dao.*;
-import bazusek.DAOImpl.*;
+import bazusek.dao.impl.*;
 import bazusek.models.*;
 
 import java.util.Properties;
@@ -81,21 +81,22 @@ public class DbConfig {
    }
 
    @Bean
-   public StudentDAO studentDAO() {
-      return new StudentDAOImpl();
+   public StudentDao studentDAO() {
+      return new StudentDaoImpl();
    }
-   @Bean
-   public MarkDAO markDAO(){return new MarkDAOImpl(); }
 
    @Bean
-   public TeacherDAO teacherDAO(){return new TeacherDAOImpl();}
+   public MarkDao markDAO(){return new MarkDaoImpl(); }
 
    @Bean
-   public SubjectDAO subjectDAO(){return new SubjectDAOImpl();}
+   public TeacherDao teacherDAO(){return new TeacherDaoImpl();}
 
    @Bean
-   public StudentAddressDAO studentHomeAddressDAO(){return new StudentAddressDAOImpl();}
+   public SubjectDao subjectDAO(){return new SubjectDaoImpl();}
 
    @Bean
-   public TeacherAssignmentDAO teacherAssignmentDAO(){return new TeacherAssignmentDAOImpl();}
+   public StudentAddressDao studentHomeAddressDAO(){return new StudentAddressDaoImpl();}
+
+   @Bean
+   public TeacherAssignmentDao teacherAssignmentDAO(){return new TeacherAssignmentDaoImpl();}
 }

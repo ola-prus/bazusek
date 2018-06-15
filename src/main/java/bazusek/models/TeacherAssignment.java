@@ -1,13 +1,14 @@
 package bazusek.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Ola on 2018-06-09.
  */
 @Entity
 @Table(name = "teacherAssignment")
-public class TeacherAssignment {
+public class TeacherAssignment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -55,8 +56,8 @@ public class TeacherAssignment {
     public String toString() {
         return "TeacherAssignment{" +
                 "id=" + id +
-                ", subject=" + subject.getSubject() +
-                ", teacher=" + teacher.getFirstName() + " "+teacher.getLastName()+
+//                ", subject=" + subject.getSubject() +
+                ", teacher=" + teacher.gettFirstName() + " "+teacher.gettLastName()+
                 '}';
     }
 }

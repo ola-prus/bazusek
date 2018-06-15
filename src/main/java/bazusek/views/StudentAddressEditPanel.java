@@ -1,12 +1,13 @@
 package bazusek.views;
 
-import bazusek.dao.StudentAddressDAO;
-import bazusek.dao.StudentDAO;
+import bazusek.dao.StudentAddressDao;
+import bazusek.dao.StudentDao;
 import bazusek.models.Student;
 import bazusek.models.StudentAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
+import java.util.logging.Logger;
 
 /**
  * Created by Ola on 2018-06-01.
@@ -15,13 +16,15 @@ public class StudentAddressEditPanel extends JPanel {
 
 
     @Autowired
-    StudentDAO studentDAO;
+    StudentDao studentDao;
 
     @Autowired
-    StudentAddressDAO studentAddressDAO;
+    StudentAddressDao studentAddressDao;
 
     @Autowired
     StudentListPanel studentListPanel;
+
+    private static final Logger logger = Logger.getLogger(StudentAddressEditPanel.class.getName());
 
     public StudentAddressEditPanel(){
 
@@ -101,9 +104,9 @@ public class StudentAddressEditPanel extends JPanel {
         add(typeT);
 
          button1.addActionListener(event -> {
-            System.out.println("Edytuj adres");
+            logger.info("Edytuj adres");
              if (studentListPanel.getNr()!=0) {
-                 StudentAddress studentAddress = studentAddressDAO.showAddress(studentListPanel.getNr());
+                 StudentAddress studentAddress = studentAddressDao.showAddress(studentListPanel.getNr());
                  streetT.setText(studentAddress.getStreet());
                  nrT.setText(studentAddress.getBuildingNr());
                  cityT.setText(studentAddress.getCity());
@@ -116,12 +119,12 @@ public class StudentAddressEditPanel extends JPanel {
 
         JButton button = new JButton("Zapisz zmiany");
         button.addActionListener(event -> {
-            System.out.println("Edytuj adres");
+            logger.info("Edytuj adres");
             Student student = new Student();
             student.setIdStudent(1);
-            StudentAddress studentAddress = studentAddressDAO.save(new StudentAddress(streetT.getText(), nrT.getText(), cityT.getText(),
+            StudentAddress studentAddress = studentAddressDao.save(new StudentAddress(streetT.getText(), nrT.getText(), cityT.getText(),
                     postalT.getText(), countryT.getText(),student, typeT.getText()));
-            System.out.println("Adres dodany: "+ studentAddress);
+            logger.info("Adres dodany");
         });
 
         add(button);

@@ -2,10 +2,11 @@ package bazusek.models;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="student")
-public class Student {
+public class Student implements Serializable {
 
 
     @Id
@@ -15,37 +16,37 @@ public class Student {
 
 
     @Column
-    private String firstName;
+    private String sFirstName;
 
     @Column
-    private String secondName;
+    private String sSecondName;
 
     @Column
-    private String lastName;
+    private String sLastName;
 
     @Column
-    private String pesel;
+    private String sPesel;
 
     @Column
-    private String motherName;
+    private String sMotherName;
     @Column
-    private String fatherName;
+    private String sFatherName;
     @Column
-    private String phone;
+    private String sPhone;
 
     public Student() {
     }
 
 
-    public Student(String firstName, String secondName, String lastName, String pesel, String motherName,
-                   String fatherName, String phone) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.lastName = lastName;
-        this.pesel = pesel;
-        this.motherName = motherName;
-        this.fatherName = fatherName;
-        this.phone = phone;
+    public Student(String sFirstName, String sSecondName, String sLastName, String sPesel, String sMotherName,
+                   String sFatherName, String sPhone) {
+        this.sFirstName = sFirstName;
+        this.sSecondName = sSecondName;
+        this.sLastName = sLastName;
+        this.sPesel = sPesel;
+        this.sMotherName = sMotherName;
+        this.sFatherName = sFatherName;
+        this.sPhone = sPhone;
     }
 
     public int getIdStudent() {
@@ -56,65 +57,65 @@ public class Student {
         this.idStudent = idStudent;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getsFirstName() {
+        return sFirstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setsFirstName(String sFirstName) {
+        this.sFirstName = sFirstName;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String getsSecondName() {
+        return sSecondName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setsSecondName(String sSecondName) {
+        this.sSecondName = sSecondName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getsLastName() {
+        return sLastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setsLastName(String sLastName) {
+        this.sLastName = sLastName;
     }
 
-    public String getPesel() {
-        return pesel;
+    public String getsPesel() {
+        return sPesel;
     }
 
-    public void setPesel(String pesel) {
-        this.pesel = pesel;
+    public void setsPesel(String sPesel) {
+        this.sPesel = sPesel;
     }
 
-    public String getMotherName() {
-        return motherName;
+    public String getsMotherName() {
+        return sMotherName;
     }
 
-    public void setMotherName(String motherName) {
-        this.motherName = motherName;
+    public void setsMotherName(String sMotherName) {
+        this.sMotherName = sMotherName;
     }
 
-    public String getFatherName() {
-        return fatherName;
+    public String getsFatherName() {
+        return sFatherName;
     }
 
-    public void setFatherName(String fatherName) {
-        this.fatherName = fatherName;
+    public void setsFatherName(String sFatherName) {
+        this.sFatherName = sFatherName;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getsPhone() {
+        return sPhone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setsPhone(String sPhone) {
+        this.sPhone = sPhone;
     }
 
     @Override
     public String toString() {
-        return " idStudent: " + idStudent + " imie: " + firstName + " drugie imie:" + secondName + " nazwisko: "
-                + lastName + " pesel: " + pesel + " imie matki: " + motherName + " imie ojca: " + fatherName + " telefon: " + phone;
+        return " idStudent: " + idStudent + " imie: " + sFirstName + " drugie imie:" + sSecondName + " nazwisko: "
+                + sLastName + " sPesel: " + sPesel + " imie matki: " + sMotherName + " imie ojca: " + sFatherName + " telefon: " + sPhone;
     }
 }

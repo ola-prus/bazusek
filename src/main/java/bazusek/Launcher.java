@@ -12,11 +12,12 @@ import java.util.logging.Logger;
  */
 
 public class Launcher {
-    private final static Logger LOGGER = Logger.getLogger(Launcher.class.getName());
+
+    private static final Logger logger = Logger.getLogger(Launcher.class.getName());
 
     public void launch() {
         new AnnotationConfigApplicationContext(DbConfig.class, AppConfig.class);
-        System.out.println("start");// logger.log("Start aplikacji Spring");
+         logger.info("Start aplikacji Spring");
 
     }
 
