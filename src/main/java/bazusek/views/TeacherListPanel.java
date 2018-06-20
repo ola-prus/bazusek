@@ -2,6 +2,7 @@ package bazusek.views;
 
 import bazusek.dao.SubjectDao;
 import bazusek.dao.TeacherDao;
+import bazusek.models.Student;
 import bazusek.models.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -58,17 +59,17 @@ public class TeacherListPanel extends JPanel {
 
         tListModel = new DefaultListModel();
 
+        updateUI();
+
         JList tList = new JList(tListModel);
         tList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-        tList.addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent evt) {
-                if (evt.getValueIsAdjusting())
-                    return;
-                logger.info("Selected "+tListModel.getElementAt(evt.getLastIndex()));
-                String text= tListModel.getElementAt(evt.getLastIndex()).toString();
-                tSelectionNr=Integer.parseInt(text.replaceAll("[^0-9]", ""));
-            }
+        tList.addListSelectionListener(evt -> {
+            if (evt.getValueIsAdjusting())
+                return;
+            logger.info("Selected "+tListModel.getElementAt(tList.getAnchorSelectionIndex()));
+            String text= tListModel.getElementAt(tList.getAnchorSelectionIndex()).toString();
+            tSelectionNr=Integer.parseInt(text.replaceAll("[^0-9]", ""));
         });
 
         JScrollPane listScroller = new JScrollPane(tList);
@@ -84,16 +85,18 @@ public class TeacherListPanel extends JPanel {
 
         JButton tDataButton = new JButton("Szczegółowe dane / Edycja");
         tDataButton.addActionListener(event -> {
-            logger.info("Przejscie do edycji danych nauczyciela");
-            mainFrame.setContentPane(teacherDataEditPanel);
-            studentListPanel.setVisible(false);
-            studentMarkEditPanel.setVisible(false);
-            teacherListPanel.setVisible(false);
-            teacherDataEditPanel.setVisible(true);
-            subjectTeacherEditPanel.setVisible(false);
-            studentAddressEditPanel.setVisible(false);
-            studentDataEditPanel.setVisible(false);
-
+            if (tSelectionNr != 0) {
+                logger.info("Przejscie do edycji danych nauczyciela");
+                mainFrame.setContentPane(teacherDataEditPanel);
+                studentListPanel.setVisible(false);
+                studentMarkEditPanel.setVisible(false);
+                teacherListPanel.setVisible(false);
+                teacherDataEditPanel.setVisible(true);
+                subjectTeacherEditPanel.setVisible(false);
+                studentAddressEditPanel.setVisible(false);
+                studentDataEditPanel.setVisible(false);
+                showTData();
+            } else logger.info("nie wybrano id");
         });
         add(tDataButton);
 
@@ -114,9 +117,8 @@ public class TeacherListPanel extends JPanel {
 
         JButton tAddButton = new JButton("Dodaj nowego nauczyciela");
         tAddButton.addActionListener(event -> {
-
             logger.info("Przejscie do dodawania nauczyciela");
-            tSelectionNr=0;
+            clearTData();
             mainFrame.setContentPane(teacherDataEditPanel);
             studentListPanel.setVisible(false);
             studentMarkEditPanel.setVisible(false);
@@ -134,6 +136,8 @@ public class TeacherListPanel extends JPanel {
             teacherDao.delete(tSelectionNr);
         });
         add(tDeleteButton);
+
+        updateUI();
     }
 
     public void refreshTeacherList() {
@@ -142,9 +146,33 @@ public class TeacherListPanel extends JPanel {
         for (int i = 0; i < teacherList.size(); i++) {
             tListModel.addElement( teacherList.get(i).getIdTeacher()+". " + teacherList.get(i).gettFirstName() +
                     " " + teacherList.get(i).gettLastName());
+            updateUI();
         }
     }
     public int getNr(){
         return tSelectionNr;
+    }
+
+    void showTData(){
+        Teacher teacher = teacherDao.showTeacher(tSelectionNr);
+        teacherDataEditPanel.tTextName.setText(teacher.gettFirstName());
+        teacherDataEditPanel.tTextSecondName.setText(teacher.gettSecondName());
+        teacherDataEditPanel.tTextLastName.setText(teacher.gettLastName());
+        teacherDataEditPanel.tTextPesel.setText(teacher.gettPesel());
+        teacherDataEditPanel.tTextMotherName.setText(teacher.gettMotherName());
+        teacherDataEditPanel.tTextFatherName.setText(teacher.gettFatherName());
+        teacherDataEditPanel.tTextPhone.setText(teacher.gettPhone());
+
+    }
+
+    void clearTData(){
+        teacherDataEditPanel.tTextName.setText("");
+        teacherDataEditPanel.tTextSecondName.setText("");
+        teacherDataEditPanel.tTextLastName.setText("");
+        teacherDataEditPanel.tTextPesel.setText("");
+        teacherDataEditPanel.tTextMotherName.setText("");
+        teacherDataEditPanel.tTextFatherName.setText("");
+        teacherDataEditPanel.tTextPhone.setText("");
+
     }
 }

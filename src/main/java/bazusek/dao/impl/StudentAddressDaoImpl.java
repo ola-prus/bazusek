@@ -1,12 +1,14 @@
 package bazusek.dao.impl;
 
 import bazusek.dao.StudentAddressDao;
+import bazusek.models.Student;
 import bazusek.models.StudentAddress;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -32,8 +34,11 @@ public class StudentAddressDaoImpl implements StudentAddressDao {
 
     @Transactional
     public StudentAddress showAddress(int id ){
-        StudentAddress studentAddress=getSession().load(StudentAddress.class,id);
-        logger.info("student wybrany : "+studentAddress);
+        Student student = new Student();
+        student.setIdStudent(id);
+        List<StudentAddress>listSA= (List<StudentAddress>) getSession().createQuery("from StudentAddress where idStudent = :id ").setParameter("id", id).list();
+        StudentAddress studentAddress=listSA.get(0);
+        logger.info("student wybrany : "+ studentAddress);
         return studentAddress;
 
     }

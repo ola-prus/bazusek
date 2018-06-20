@@ -26,7 +26,7 @@ public class SubjectDaoImpl implements SubjectDao {
 
     @Transactional
     public List<Subject> subjectList(){
-        return getSession().createCriteria(Subject.class).list();
+        return getSession().createQuery("from Subject").list();
     }
 
     @Transactional

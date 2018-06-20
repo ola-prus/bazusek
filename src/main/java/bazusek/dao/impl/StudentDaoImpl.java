@@ -24,7 +24,8 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Transactional
 	public List<Student> studentList(){
-		return getSession().createCriteria(Student.class).list();
+		return getSession().createQuery("from Student").list();
+
 	}
 
 	@Transactional

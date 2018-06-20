@@ -26,7 +26,7 @@ public class TeacherAssignmentDaoImpl implements TeacherAssignmentDao {
 
     @Transactional
     public List<TeacherAssignment> teacherAssignmentList(){
-        return getSession().createCriteria(TeacherAssignment.class).list();
+        return getSession().createQuery("from TeacherAssignment").list();
     }
 
     @Transactional

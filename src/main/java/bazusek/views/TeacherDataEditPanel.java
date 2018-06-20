@@ -2,6 +2,7 @@ package bazusek.views;
 
 import bazusek.dao.TeacherDao;
 import bazusek.models.Teacher;
+import com.sun.org.apache.xerces.internal.impl.dv.xs.AbstractDateTimeDV;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
@@ -20,14 +21,23 @@ public class TeacherDataEditPanel extends JPanel{
 
     private static final Logger logger = Logger.getLogger(TeacherDataEditPanel.class.getName());
 
+    JTextField tTextName;
+    JTextField tTextSecondName;
+    JTextField tTextLastName;
+    JTextField tTextPesel;
+    JTextField tTextMotherName;
+    JTextField tTextFatherName;
+    JTextField tTextPhone;
+
     public TeacherDataEditPanel(){
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         String[] labels = {"imię:", "drugie imię:", "nazwisko:", "tPesel:", "imię matki:", "imię ojca:", "telefon:"};
 
-        JButton tShowDataButton = new JButton("Pokaż dane nauczyciela");
-        add(tShowDataButton);
+       JLabel mainLabel=new JLabel("DANE NAUCZYCIELA");
+        add(mainLabel);
+
         updateUI();
 
         JLabel tName = new JLabel(labels[0], JLabel.TRAILING);
@@ -35,7 +45,7 @@ public class TeacherDataEditPanel extends JPanel{
         tName.setSize(1, 1);
         add(tName);
 
-        JTextField tTextName = new JTextField();
+         tTextName = new JTextField();
         tTextName.setEditable(true);
         tTextName.setSize(25, 20);
         tName.setLabelFor(tTextName);
@@ -46,7 +56,7 @@ public class TeacherDataEditPanel extends JPanel{
         tSecondName.setSize(1, 1);
         add(tSecondName);
 
-        JTextField tTextSecondName = new JTextField();
+         tTextSecondName = new JTextField();
         tTextSecondName.setEditable(true);
         tTextSecondName.setSize(25, 20);
         tSecondName.setLabelFor(tTextSecondName);
@@ -57,7 +67,7 @@ public class TeacherDataEditPanel extends JPanel{
         tLastName.setSize(1, 1);
         add(tLastName);
 
-        JTextField tTextLastName = new JTextField();
+         tTextLastName = new JTextField();
         tTextLastName.setEditable(true);
         tTextLastName.setSize(25, 20);
         tLastName.setLabelFor(tTextSecondName);
@@ -68,7 +78,7 @@ public class TeacherDataEditPanel extends JPanel{
         tPesel.setSize(1, 1);
         add(tPesel);
 
-        JTextField tTextPesel = new JTextField();
+         tTextPesel = new JTextField();
         tTextPesel.setEditable(true);
         tTextPesel.setSize(25, 20);
         tPesel.setLabelFor(tTextPesel);
@@ -79,7 +89,7 @@ public class TeacherDataEditPanel extends JPanel{
         tMotherName.setSize(1, 1);
         add(tMotherName);
 
-        JTextField tTextMotherName = new JTextField();
+         tTextMotherName = new JTextField();
         tTextMotherName.setEditable(true);
         tTextMotherName.setSize(25, 20);
         tMotherName.setLabelFor(tTextMotherName);
@@ -90,7 +100,7 @@ public class TeacherDataEditPanel extends JPanel{
         tFatherName.setSize(1, 1);
         add(tFatherName);
 
-        JTextField tTextFatherName = new JTextField();
+         tTextFatherName = new JTextField();
         tTextFatherName.setEditable(true);
         tTextFatherName.setSize(25, 20);
         tFatherName.setLabelFor(tTextFatherName);
@@ -101,25 +111,11 @@ public class TeacherDataEditPanel extends JPanel{
         tPhone.setSize(1, 1);
         add(tPhone);
 
-        JTextField tTextPhone = new JTextField();
+         tTextPhone = new JTextField();
         tTextPhone.setEditable(true);
         tTextPhone.setSize(25, 20);
         tPhone.setLabelFor(tTextPhone);
         add(tTextPhone);
-
-        tShowDataButton.addActionListener(event -> {
-            logger.info("Edytuj dane nauczyciela");
-            if (teacherListPanel.getNr()!=0) {
-                Teacher teacher = teacherDao.showTeacher(teacherListPanel.getNr());
-                tTextName.setText(teacher.gettFirstName());
-                tTextSecondName.setText(teacher.gettSecondName());
-                tTextLastName.setText(teacher.gettLastName());
-                tTextPesel.setText(teacher.gettPesel());
-                tTextMotherName.setText(teacher.gettMotherName());
-                tTextFatherName.setText(teacher.gettFatherName());
-                tTextPhone.setText(teacher.gettPhone());
-            }
-        });
 
         JButton tSaveButton = new JButton("Zapisz zmiany");
         tSaveButton.addActionListener(event -> {

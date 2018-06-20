@@ -3,6 +3,7 @@ package bazusek.views;
 import bazusek.dao.StudentDao;
 import bazusek.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 
 import javax.swing.*;
 import java.util.logging.Logger;
@@ -20,24 +21,31 @@ public class StudentDataEditPanel extends JPanel  {
 
     private static final Logger logger = Logger.getLogger(StudentDataEditPanel.class.getName());
 
+    JTextField sTextName;
+    JTextField sTextSecondName;
+    JTextField sTextLastName;
+    JTextField sTextPesel;
+    JTextField sTextMotherName;
+    JTextField sTextFatherName;
+    JTextField sTextPhone;
+
     public StudentDataEditPanel() {
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
-
-        JButton sShowDataButton = new JButton("Pokaż dane studenta");
-        add(sShowDataButton);
-
         String[] labels = {"imię:", "drugie imię:", "nazwisko:", "sPesel:", "imię matki:", "imię ojca:", "telefon:"};
 
         updateUI();
+
+        JLabel mainLabel=new JLabel("DANE STUDENTA");
+        add(mainLabel);
 
         JLabel sName = new JLabel(labels[0], JLabel.TRAILING);
         sName.setLocation(0, 1);
         sName.setSize(1, 1);
         add(sName);
 
-        JTextField sTextName = new JTextField();
+       sTextName=new JTextField();
          sTextName.setEditable(true);
         sTextName.setSize(25, 20);
         sName.setLabelFor(sTextName);
@@ -48,7 +56,7 @@ public class StudentDataEditPanel extends JPanel  {
         sSecondName.setSize(1, 1);
         add(sSecondName);
 
-        JTextField sTextSecondName = new JTextField();
+         sTextSecondName = new JTextField();
         sTextSecondName.setEditable(true);
         sTextSecondName.setSize(25, 20);
         sSecondName.setLabelFor(sTextSecondName);
@@ -59,7 +67,7 @@ public class StudentDataEditPanel extends JPanel  {
         sLastName.setSize(1, 1);
         add(sLastName);
 
-        JTextField sTextLastName = new JTextField();
+         sTextLastName = new JTextField();
         sTextLastName.setEditable(true);
         sTextLastName.setSize(25, 20);
         sLastName.setLabelFor(sTextSecondName);
@@ -70,7 +78,7 @@ public class StudentDataEditPanel extends JPanel  {
         sPesel.setSize(1, 1);
         add(sPesel);
 
-        JTextField sTextPesel = new JTextField();
+         sTextPesel = new JTextField();
         sTextPesel.setEditable(true);
         sTextPesel.setSize(25, 20);
         sPesel.setLabelFor(sTextPesel);
@@ -81,7 +89,7 @@ public class StudentDataEditPanel extends JPanel  {
         sMotherName.setSize(1, 1);
         add(sMotherName);
 
-        JTextField sTextMotherName = new JTextField();
+        sTextMotherName = new JTextField();
         sTextMotherName.setEditable(true);
         sTextMotherName.setSize(25, 20);
         sMotherName.setLabelFor(sTextMotherName);
@@ -92,7 +100,7 @@ public class StudentDataEditPanel extends JPanel  {
         sFatherName.setSize(1, 1);
         add(sFatherName);
 
-        JTextField sTextFatherName = new JTextField();
+         sTextFatherName = new JTextField();
         sTextFatherName.setEditable(true);
         sTextFatherName.setSize(25, 20);
         sFatherName.setLabelFor(sTextFatherName);
@@ -103,25 +111,11 @@ public class StudentDataEditPanel extends JPanel  {
         sPhone.setSize(1, 1);
         add(sPhone);
 
-        JTextField sTextPhone = new JTextField();
+         sTextPhone = new JTextField();
         sTextPhone.setEditable(true);
         sTextPhone.setSize(25, 20);
         sPhone.setLabelFor(sTextPhone);
         add(sTextPhone);
-
-        sShowDataButton.addActionListener(event -> {
-            logger.info("Edytuj dane");
-            if (studentListPanel.getNr()!=0) {
-                Student student = studentDao.showStudent(studentListPanel.getNr());
-                sTextName.setText(student.getsFirstName());
-                sTextSecondName.setText(student.getsSecondName());
-                sTextLastName.setText(student.getsLastName());
-                sTextPesel.setText(student.getsPesel());
-                sTextMotherName.setText(student.getsMotherName());
-                sTextFatherName.setText(student.getsFatherName());
-                sTextPhone.setText(student.getsPhone());
-            }
-        });
 
         JButton sSaveButton = new JButton("Zapisz zmiany");
         sSaveButton.addActionListener(event -> {

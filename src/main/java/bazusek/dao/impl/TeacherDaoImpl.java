@@ -26,7 +26,7 @@ public class TeacherDaoImpl implements TeacherDao {
 
     @Transactional
     public List<Teacher> teacherList(){
-        return getSession().createCriteria(Teacher.class).list();
+        return getSession().createQuery("from Teacher").list();
     }
 
     @Transactional

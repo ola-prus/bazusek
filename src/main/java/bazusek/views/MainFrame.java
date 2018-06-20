@@ -4,6 +4,7 @@ package bazusek.views;
  * Created by Ola on 2018-05-28.
  */
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 
 import java.awt.*;
 import javax.swing.*;

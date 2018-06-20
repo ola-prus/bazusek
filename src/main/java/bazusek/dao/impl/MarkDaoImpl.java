@@ -26,7 +26,7 @@ public class MarkDaoImpl implements MarkDao {
 
     @Transactional
     public List<Mark> marksList(){
-        return getSession().createCriteria(Mark.class).list();
+        return getSession().createQuery("from Mark").list();
     }
 
 

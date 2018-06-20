@@ -4,8 +4,10 @@ import bazusek.views.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 import javax.annotation.PostConstruct;
+import javax.swing.*;
 
 /**
  * Created by Ola on 2018-05-28.
