@@ -42,6 +42,12 @@ public class AppConfig {
     @Bean
     StudentAddressEditPanel studentHomeAddressEditPanel(){return new StudentAddressEditPanel();}
 
+    @Bean
+    ClockPanel clockPanel(){return new ClockPanel();}
+
+    @Bean
+    JSplitPane splitPane(){return new JSplitPane();}
+
     @PostConstruct
     public void initialize() {
         mainFrame().init();

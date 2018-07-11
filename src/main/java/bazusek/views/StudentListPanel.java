@@ -4,13 +4,20 @@ import bazusek.dao.StudentAddressDao;
 import bazusek.dao.StudentDao;
 import bazusek.models.Student;
 import bazusek.models.StudentAddress;
+import javafx.scene.control.SplitPane;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Spliterator;
 import java.util.function.Supplier;
 import java.util.logging.Logger;
 
@@ -50,6 +57,12 @@ public class StudentListPanel extends JPanel {
     @Autowired
     StudentAddressDao studentAddressDao;
 
+    @Autowired
+    JSplitPane splitPane;
+
+    @Autowired
+    ClockPanel clockPanel;
+
     private DefaultListModel sListModel;
 
     int sSelectionNr;
@@ -76,9 +89,10 @@ public class StudentListPanel extends JPanel {
         sList.addListSelectionListener(evt -> {
             if (evt.getValueIsAdjusting())
                 return;
-            logger.info("Selected "+sListModel.getElementAt(sList.getAnchorSelectionIndex()));
-            String text= sListModel.getElementAt(sList.getAnchorSelectionIndex()).toString();
-            sSelectionNr=Integer.parseInt(text.replaceAll("[^0-9]", ""));
+            logger.info("Selected " + sListModel.getElementAt(sList.getAnchorSelectionIndex()));
+            String text = sListModel.getElementAt(sList.getAnchorSelectionIndex()).toString();
+            sSelectionNr = Character.getNumericValue(text.replaceAll("[^0-9]", "").charAt(1));
+            System.out.println(sSelectionNr);
         });
 
         JScrollPane listScroller = new JScrollPane(sList);
@@ -88,8 +102,8 @@ public class StudentListPanel extends JPanel {
         JButton sDataButton = new JButton("Szczegółowe dane / Edycja");
         sDataButton.addActionListener(event -> {
             if (sSelectionNr != 0) {
-            logger.info("Przejscie do edycji danych studenta");
-                mainFrame.setContentPane(studentDataEditPanel);
+                logger.info("Przejscie do edycji danych studenta");
+                splitPane.setTopComponent(studentDataEditPanel);
                 studentListPanel.setVisible(false);
                 studentMarkEditPanel.setVisible(false);
                 teacherListPanel.setVisible(false);
@@ -97,6 +111,7 @@ public class StudentListPanel extends JPanel {
                 subjectTeacherEditPanel.setVisible(false);
                 studentAddressEditPanel.setVisible(false);
                 studentDataEditPanel.setVisible(true);
+                clockPanel.setVisible(true);
                 showSData();
             } else logger.info("nie wybrano id");
         });
@@ -104,9 +119,9 @@ public class StudentListPanel extends JPanel {
 
         JButton addressButton = new JButton("Adres / Edycja");
         addressButton.addActionListener(event -> {
-            if (sSelectionNr!=0) {
+            if (sSelectionNr != 0) {
                 logger.info("Przejscie do edycji adresu studenta");
-                mainFrame.setContentPane(studentAddressEditPanel);
+                splitPane.setTopComponent(studentAddressEditPanel);
                 studentListPanel.setVisible(false);
                 studentMarkEditPanel.setVisible(false);
                 teacherListPanel.setVisible(false);
@@ -114,19 +129,18 @@ public class StudentListPanel extends JPanel {
                 subjectTeacherEditPanel.setVisible(false);
                 studentAddressEditPanel.setVisible(true);
                 studentDataEditPanel.setVisible(false);
-                if ( studentAddressDao.showAddress(sSelectionNr).getStudent().getIdStudent()==sSelectionNr) {
+                clockPanel.setVisible(true);
+                if (studentAddressDao.showAddress(sSelectionNr).getStudent().getIdStudent() == sSelectionNr) {
                     showSAddress();
-                }
-                else clearAddress();
-            }
-            else logger.info("nie wybrano id");
+                } else clearAddress();
+            } else logger.info("nie wybrano id");
         });
         add(addressButton);
 
         JButton showMarkButton = new JButton("Oceny / Edycja");
         showMarkButton.addActionListener(event -> {
             logger.info("Przejście do ocen studenta");
-            mainFrame.setContentPane(studentMarkEditPanel);
+            splitPane.setTopComponent(studentMarkEditPanel);
             studentListPanel.setVisible(false);
             studentMarkEditPanel.setVisible(true);
             teacherListPanel.setVisible(false);
@@ -134,7 +148,7 @@ public class StudentListPanel extends JPanel {
             subjectTeacherEditPanel.setVisible(false);
             studentAddressEditPanel.setVisible(false);
             studentDataEditPanel.setVisible(false);
-
+            clockPanel.setVisible(true);
         });
         add(showMarkButton);
 
@@ -142,7 +156,7 @@ public class StudentListPanel extends JPanel {
         sAddButton.addActionListener(event -> {
             logger.info("Przejscie do dodawania studenta");
             clearSData();
-            mainFrame.setContentPane(studentDataEditPanel);
+            splitPane.setTopComponent(studentDataEditPanel);
             studentListPanel.setVisible(false);
             studentMarkEditPanel.setVisible(false);
             teacherListPanel.setVisible(false);
@@ -150,7 +164,7 @@ public class StudentListPanel extends JPanel {
             subjectTeacherEditPanel.setVisible(false);
             studentAddressEditPanel.setVisible(false);
             studentDataEditPanel.setVisible(true);
-
+            clockPanel.setVisible(true);
         });
         add(sAddButton);
 
@@ -160,19 +174,22 @@ public class StudentListPanel extends JPanel {
         });
         add(sDeleteButton);
 
-        updateUI();
     }
 
     public void refreshStudentList() {
         sListModel.clear();
         logger.info("lista pusta");
-        List<Student> studentList = studentDao.studentList();
+         List<Student>studentList = studentDao.studentList();
         for (int i = 0; i < studentList.size(); i++) {
-            sListModel.addElement( studentList.get(i).getIdStudent()+". " + studentList.get(i).getsFirstName() + " "
-                    + studentList.get(i).getsLastName());
+            int nr=1;
+            sListModel.addElement( nr+". " + studentList.get(i).getsFirstName() + " "
+                    + studentList.get(i).getsLastName()+" ( id: "+studentList.get(i).getIdStudent()+")");
+            nr++;
             updateUI();
         }
         logger.info("lista pełna");
+        if (studentList.toString().equals("[]"))
+            System.out.println("w bazie nie ma żadnych studentów");
     }
 
     public int getNr(){

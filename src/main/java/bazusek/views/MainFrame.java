@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.util.Date;
 import javax.swing.*;
 
 
@@ -33,6 +37,11 @@ public class MainFrame extends JFrame {
     @Autowired
     StudentAddressEditPanel studentAddressEditPanel;
 
+    @Autowired
+    ClockPanel clockPanel;
+
+    @Autowired
+    JSplitPane splitPane;
 
     public void init() {
 
@@ -43,25 +52,32 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
 
         setJMenuBar(new AppMenu(this, studentListPanel, studentMarkEditPanel,studentDataEditPanel, teacherListPanel,
-                teacherDataEditPanel, subjectTeacherEditPanel, studentAddressEditPanel));
+                teacherDataEditPanel, subjectTeacherEditPanel, studentAddressEditPanel, clockPanel, splitPane));
 
-        setContentPane(studentListPanel);
+        add(splitPane);
+        splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        splitPane.setDividerLocation(500);
+        splitPane.setBottomComponent(clockPanel);
+        clockPanel.setVisible(true);
+
+        splitPane.setTopComponent(studentListPanel);
         studentListPanel.setVisible(false);
-        setContentPane(studentMarkEditPanel);
+        splitPane.setTopComponent(studentMarkEditPanel);
         studentMarkEditPanel.setVisible(false);
-        setContentPane(studentDataEditPanel);
+        splitPane.setTopComponent(studentDataEditPanel);
         studentDataEditPanel.setVisible(false);
-        setContentPane(teacherListPanel);
+        splitPane.setTopComponent(teacherListPanel);
         teacherListPanel.setVisible(false);
-        setContentPane(teacherDataEditPanel);
+        splitPane.setTopComponent(teacherDataEditPanel);
         teacherDataEditPanel.setVisible(false);
-        setContentPane(subjectTeacherEditPanel);
+        splitPane.setTopComponent(subjectTeacherEditPanel);
         subjectTeacherEditPanel.setVisible(false);
-        setContentPane(studentAddressEditPanel);
+        splitPane.setTopComponent(studentAddressEditPanel);
         studentAddressEditPanel.setVisible(false);
 
         setState(Frame.NORMAL);
         setVisible(true);
         show();
     }
+
 }

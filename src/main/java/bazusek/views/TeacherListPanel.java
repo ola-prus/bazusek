@@ -73,7 +73,7 @@ public class TeacherListPanel extends JPanel {
         });
 
         JScrollPane listScroller = new JScrollPane(tList);
-        listScroller.setPreferredSize(new Dimension(400, 400));
+        listScroller.setPreferredSize(new Dimension(500, 500));
 
         JButton refreshButton = new JButton("Pokaż listę nauczycieli");
         refreshButton.addActionListener(event -> {
